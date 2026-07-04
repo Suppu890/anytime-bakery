@@ -3,480 +3,1461 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anytime Fresh Bake Bakery & Fast Food | Bhopal</title>
-    <meta name="description" content="Delicious Cakes, Pastries, Cookies, Fast Food & Fresh Bakery Products Made With Love in Bhopal. Over 216+ Happy Customer Reviews.">
+    <meta name="description" content="Anytime Fresh Bake Bakery & Fast Food - Premium bakery with fresh cakes, pastries, cookies, and fast food in Bhopal">
+    <meta name="keywords" content="bakery, cakes, pastries, fast food, Bhopal">
+    <title>Anytime Fresh Bake - Premium Bakery & Fast Food</title>
     
-    <link rel="icon" type="image/png" href="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=32&h=32&fit=crop&crop=faces">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23D4A017'/><path d='M50 20 Q60 40 50 60 Q40 40 50 20' fill='%234E342E'/></svg>">
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Bootstrap 5 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     
-    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- AOS (Animate on Scroll) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <link rel="stylesheet" href="style.css">
+        :root {
+            --cream: #FFF8F0;
+            --soft-beige: #F5E6D3;
+            --chocolate-brown: #4E342E;
+            --bakery-gold: #D4A017;
+            --warm-orange: #FF8C42;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--chocolate-brown);
+            background-color: var(--cream);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            color: var(--chocolate-brown);
+            font-weight: 800;
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--bakery-gold) 0%, var(--warm-orange) 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            animation: fadeOut 1s ease-in-out 2s forwards;
+        }
+
+        .loader {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--bakery-gold), var(--warm-orange));
+            z-index: 9998;
+            width: 0%;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 248, 240, 0.95) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--bakery-gold), var(--warm-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-link {
+            color: var(--chocolate-brown) !important;
+            font-weight: 500;
+            margin: 0 10px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--warm-orange);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            color: var(--warm-orange) !important;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><radialGradient id="g1"><stop offset="0%25" style="stop-color:%23FFB347;stop-opacity:0.5" /><stop offset="100%25" style="stop-color:%23FF8C42;stop-opacity:0" /></radialGradient></defs><rect width="1200" height="600" fill="%23FFF8F0"/><circle cx="200" cy="150" r="100" fill="url(%23g1)"/><circle cx="1000" cy="400" r="150" fill="url(%23g1)"/><circle cx="600" cy="500" r="80" fill="url(%23g1)"/><ellipse cx="400" cy="300" rx="120" ry="60" fill="%23FFE4B5" opacity="0.3"/></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+            z-index: 0;
+        }
+
+        .hero-content {
+            z-index: 1;
+            animation: slideUp 1s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            color: var(--bakery-gold);
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeInDown 1s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-buttons {
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .btn-primary {
+            background: var(--bakery-gold);
+            border: none;
+            color: white;
+            padding: 12px 35px;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            margin: 10px;
+            font-size: 1.1rem;
+        }
+
+        .btn-primary:hover {
+            background: var(--warm-orange);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(212, 160, 23, 0.4);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--bakery-gold);
+            color: var(--bakery-gold);
+            padding: 12px 35px;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            margin: 10px;
+            font-size: 1.1rem;
+        }
+
+        .btn-secondary:hover {
+            background: var(--bakery-gold);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 50px;
+            position: relative;
+            padding-bottom: 30px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--warm-orange);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about {
+            background: linear-gradient(135deg, rgba(245, 230, 211, 0.5), rgba(255, 248, 240, 0.8));
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-top: 40px;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--chocolate-brown);
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--bakery-gold);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-card i {
+            font-size: 2.5rem;
+            color: var(--warm-orange);
+            margin-bottom: 15px;
+        }
+
+        .feature-card h4 {
+            color: var(--chocolate-brown);
+            margin-bottom: 10px;
+        }
+
+        /* Products Section */
+        .products {
+            background: var(--cream);
+        }
+
+        .product-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, var(--bakery-gold), var(--warm-orange));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 25px;
+        }
+
+        .product-info h3 {
+            color: var(--chocolate-brown);
+            margin-bottom: 10px;
+        }
+
+        .product-info p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .product-badge {
+            display: inline-block;
+            background: var(--warm-orange);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+
+        /* Why Choose Us */
+        .why-choose {
+            background: linear-gradient(135deg, rgba(212, 160, 23, 0.05), rgba(255, 140, 66, 0.05));
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .feature-item {
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-item i {
+            font-size: 4rem;
+            color: var(--bakery-gold);
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover i {
+            color: var(--warm-orange);
+            transform: scale(1.1);
+        }
+
+        .feature-item h3 {
+            color: var(--chocolate-brown);
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        /* Reviews Section */
+        .reviews {
+            background: white;
+        }
+
+        .review-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, var(--bakery-gold), var(--warm-orange));
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(212, 160, 23, 0.2);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .review-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .review-card {
+            background: var(--soft-beige);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--bakery-gold);
+        }
+
+        .review-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .stars {
+            color: var(--bakery-gold);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .review-text {
+            font-size: 1rem;
+            color: var(--chocolate-brown);
+            font-style: italic;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .reviewer-name {
+            font-weight: 600;
+            color: var(--chocolate-brown);
+        }
+
+        /* Gallery Section */
+        .gallery {
+            background: var(--cream);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            aspect-ratio: 1;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-item img,
+        .gallery-item-placeholder {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item-placeholder {
+            background: linear-gradient(135deg, var(--bakery-gold), var(--warm-orange));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .gallery-item:hover .gallery-item-placeholder,
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay i {
+            color: white;
+            font-size: 2rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, var(--chocolate-brown), rgba(78, 52, 46, 0.9));
+            color: white;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 40px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .info-item {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .info-item i {
+            font-size: 1.5rem;
+            color: var(--bakery-gold);
+            margin-top: 5px;
+            flex-shrink: 0;
+        }
+
+        .info-item h4 {
+            color: var(--bakery-gold);
+            margin-bottom: 5px;
+        }
+
+        .info-item p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn-contact {
+            background: var(--bakery-gold);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .btn-contact:hover {
+            background: var(--warm-orange);
+            transform: translateY(-3px);
+            color: white;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            color: var(--bakery-gold);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 12px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--bakery-gold);
+            box-shadow: 0 0 10px rgba(212, 160, 23, 0.3);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-submit {
+            background: var(--bakery-gold);
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .btn-submit:hover {
+            background: var(--warm-orange);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(212, 160, 23, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 50px 20px 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            color: var(--bakery-gold);
+            margin-bottom: 20px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--bakery-gold);
+            margin-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: var(--bakery-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: var(--warm-orange);
+            transform: translateY(-5px);
+            margin-left: 0;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Floating Buttons */
+        .floating-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--warm-orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(255, 140, 66, 0.4);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .floating-btn:hover {
+            background: var(--bakery-gold);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 160, 23, 0.5);
+        }
+
+        .floating-whatsapp {
+            bottom: 30px;
+            right: 30px;
+        }
+
+        .floating-call {
+            bottom: 100px;
+            right: 30px;
+        }
+
+        .back-to-top {
+            bottom: 170px;
+            right: 30px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+
+            .btn-primary, .btn-secondary {
+                padding: 10px 25px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Counter Animation */
+        .counter {
+            font-size: 2.5rem;
+            font-weight: 800;
+        }
+
+        /* Scroll Animations */
+        [data-aos] {
+            opacity: 0;
+        }
+
+        [data-aos].aos-animate {
+            opacity: 1;
+        }
+    </style>
 </head>
 <body>
-
-    <div id="preloader">
-        <div class="loader-spinner"></div>
-        <h4 class="mt-3" style="color: var(--chocolate-brown); letter-spacing: 2px;">Baking Happiness...</h4>
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loader"></div>
     </div>
 
-    <div id="scroll-progress"></div>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress"></div>
 
-    <nav class="navbar navbar-expand-lg sticky-top">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="#">
-                <svg width="45" height="45" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="50" cy="50" r="45" fill="#4E342E"/>
-                    <path d="M30 45C30 35 40 30 50 30C60 30 70 35 70 45C70 52 65 58 50 58C35 58 30 52 30 45Z" fill="#D4A017"/>
-                    <path d="M25 55C25 50 35 48 50 48C65 48 75 50 75 55C75 65 65 70 50 70C35 70 25 65 25 55Z" fill="#FF8C42"/>
-                    <circle cx="42" cy="40" r="3" fill="#FFF8F0"/>
-                    <circle cx="58" cy="38" r="3" fill="#FFF8F0"/>
-                    <circle cx="50" cy="44" r="3" fill="#FFF8F0"/>
-                </svg>
-                <div class="d-flex flex-column align-items-start">
-                    <span style="font-size: 1.25rem; letter-spacing: 0.5px; line-height: 1.1;">ANYTIME FRESH BAKE</span>
-                    <span style="font-size: 0.75rem; font-family:var(--font-body); color: var(--bakery-gold); letter-spacing: 1px; font-weight: 600;">BAKERY & FAST FOOD</span>
-                </div>
-            </a>
+            <a class="navbar-brand" href="#home">🍰 Anytime Fresh</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto text-center align-items-center">
-                    <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#products">Menu</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#why-choose-us">Why Us</a></li>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#products">Products</a></li>
                     <li class="nav-item"><a class="nav-link" href="#reviews">Reviews</a></li>
                     <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                    <li class="nav-item ms-lg-2">
-                        <button class="btn btn-sm btn-outline-brown px-3 py-1.5" onclick="triggerAdminLogin()" style="font-size: 0.8rem; border-radius: 20px;">
-                            <i class="fa-solid fa-lock me-1"></i> Admin Portal
-                        </button>
-                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <section class="hero-section">
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 data-aos="fade-down" data-aos-duration="1000">Anytime Fresh Bake</h1>
+            <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">Freshly Baked Happiness Every Day</p>
+            <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400" style="font-size: 1.1rem; margin-bottom: 40px;">Delicious Cakes, Pastries, Cookies, Fast Food & Fresh Bakery Products Made With Love</p>
+            <div class="hero-buttons" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
+                <button class="btn-primary" onclick="document.getElementById('products').scrollIntoView({behavior: 'smooth'})">
+                    <i class="fas fa-shopping-cart"></i> Order Now
+                </button>
+                <a href="tel:9009378380" class="btn-secondary">
+                    <i class="fas fa-phone"></i> Call Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-8" data-aos="fade-right" data-aos-duration="1200">
-                    <span class="badge mb-3 px-3 py-2" style="background-color: var(--warm-orange); font-family: var(--font-body); font-weight: 500; letter-spacing: 1px;">WELCOME TO PREMIUM FRESHNESS</span>
-                    <h1 class="hero-title">Freshly Baked Happiness Every Day</h1>
-                    <p class="hero-subtitle">Delicious Cakes, Pastries, Cookies, Fast Food & Fresh Bakery Products Made With Love.</p>
-                    <div class="d-flex flex-wrap gap-3">
-                        <a href="tel:9009378380" class="btn btn-custom btn-gold"><i class="fa-solid fa-phone me-2"></i>Call Us Now</a>
-                        <a href="#products" class="btn btn-custom btn-outline-brown" style="color:#fff; border-color:#fff;"><i class="fa-solid fa-utensils me-2"></i>Explore Menu</a>
+            <h2 class="section-title" data-aos="fade-up">About Us</h2>
+            <div class="about-content">
+                <div data-aos="fade-right" data-aos-duration="1000">
+                    <p class="about-text">
+                        At Anytime Fresh Bake Bakery & Fast Food, we bring freshly baked products and delicious fast food to our customers every day. Our passion for quality ingredients and exceptional taste has made us a favorite destination for bakery lovers in Bhopal.
+                    </p>
+                    <p class="about-text" style="margin-top: 20px;">
+                        Every product that leaves our kitchen is crafted with love, precision, and the finest ingredients available. We believe in creating moments of joy through delicious food.
+                    </p>
+                </div>
+                <div class="about-features" data-aos="fade-left" data-aos-duration="1000">
+                    <div class="feature-card">
+                        <i class="fas fa-leaf"></i>
+                        <h4>Fresh Ingredients</h4>
+                        <p>Premium quality ingredients sourced daily</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-chef-hat"></i>
+                        <h4>Expert Bakers</h4>
+                        <p>Skilled professionals with years of experience</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-clock"></i>
+                        <h4>Daily Fresh Production</h4>
+                        <p>Baked fresh every morning for you</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-check-circle"></i>
+                        <h4>Quality Assured</h4>
+                        <p>Guaranteed quality and hygiene standards</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="about" class="section-padding about-section">
+    <!-- Products Section -->
+    <section id="products" class="products">
         <div class="container">
-            <div class="row align-items-center g-5">
-                <div class="col-lg-6" data-aos="fade-up" data-aos-duration="1000">
-                    <div class="about-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=800" alt="Fresh Bakery Products" class="about-img-main">
-                        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=500" alt="Baking Process" class="about-img-floating">
+            <h2 class="section-title" data-aos="fade-up">Our Products</h2>
+            <div class="product-container">
+                <!-- Cakes -->
+                <div class="product-card" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="0">
+                    <div class="product-image">🎂</div>
+                    <div class="product-info">
+                        <div class="product-badge">Popular</div>
+                        <h3>Custom Cakes</h3>
+                        <p>Delicious custom-made cakes for every occasion - birthdays, weddings, and celebrations</p>
                     </div>
                 </div>
-                <div class="col-lg-6" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-                    <span style="color: var(--bakery-gold); font-weight:600; letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem;">Our Story</span>
-                    <h2 class="mt-2 mb-4" style="font-size: 2.5rem;">Baking With Passion, Serving With Love</h2>
-                    <p class="mb-4">At Anytime Fresh Bake Bakery & Fast Food, we bring freshly baked products and delicious fast food to our customers every day. Our passion for quality ingredients and exceptional taste has made us a favorite destination for bakery lovers in Bhopal.</p>
+
+                <!-- Pastries -->
+                <div class="product-card" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100">
+                    <div class="product-image">🥐</div>
+                    <div class="product-info">
+                        <div class="product-badge">Fresh Daily</div>
+                        <h3>Pastries</h3>
+                        <p>Flaky, buttery pastries including croissants, danishes, and more</p>
+                    </div>
+                </div>
+
+                <!-- Cookies -->
+                <div class="product-card" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200">
+                    <div class="product-image">🍪</div>
+                    <div class="product-info">
+                        <div class="product-badge">Best Seller</div>
+                        <h3>Cookies</h3>
+                        <p>Homemade cookies in various flavors - chocolate chip, sugar, oatmeal & more</p>
+                    </div>
+                </div>
+
+                <!-- Cupcakes -->
+                <div class="product-card" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="300">
+                    <div class="product-image">🧁</div>
+                    <div class="product-info">
+                        <div class="product-badge">New</div>
+                        <h3>Cupcakes</h3>
+                        <p>Individually decorated cupcakes with premium frosting and toppings</p>
+                    </div>
+                </div>
+
+                <!-- Pizza -->
+                <div class="product-card" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="400">
+                    <div class="product-image">🍕</div>
+                    <div class="product-info">
+                        <div class="product-badge">Fast Food</div>
+                        <h3>Fresh Pizza</h3>
+                        <p>Delicious pizzas with fresh toppings, made to order</p>
+                    </div>
+                </div>
+
+                <!-- Burgers -->
+                <div class="product-card" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="500">
+                    <div class="product-image">🍔</div>
+                    <div class="product-info">
+                        <div class="product-badge">Fast Food</div>
+                        <h3>Gourmet Burgers</h3>
+                        <p>Juicy burgers with premium meat and fresh vegetables</p>
+                    </div>
+                </div>
+
+                <!-- Sandwiches -->
+                <div class="product-card" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="600">
+                    <div class="product-image">🥪</div>
+                    <div class="product-info">
+                        <div class="product-badge">Fast Food</div>
+                        <h3>Sandwiches</h3>
+                        <p>Fresh sandwiches packed with quality ingredients</p>
+                    </div>
+                </div>
+
+                <!-- Fast Food Specials -->
+                <div class="product-card" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="700">
+                    <div class="product-image">🍟</div>
+                    <div class="product-info">
+                        <div class="product-badge">Combo Deals</div>
+                        <h3>Fast Food Specials</h3>
+                        <p>Amazing combo deals on your favorite fast food items</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-choose">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Why Choose Us</h2>
+            <div class="features-grid">
+                <div class="feature-item" data-aos="fade-up" data-aos-delay="0">
+                    <i class="fas fa-calendar-check"></i>
+                    <h3>Freshly Baked Daily</h3>
+                    <p>Everything is prepared fresh every morning to ensure maximum quality</p>
+                </div>
+
+                <div class="feature-item" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-star"></i>
+                    <h3>Premium Ingredients</h3>
+                    <p>We use only the finest ingredients for our products</p>
+                </div>
+
+                <div class="feature-item" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-soap"></i>
+                    <h3>Hygienic Kitchen</h3>
+                    <p>Clean and sanitized kitchen following all food safety standards</p>
+                </div>
+
+                <div class="feature-item" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-wallet"></i>
+                    <h3>Affordable Prices</h3>
+                    <p>Quality products at reasonable and pocket-friendly prices</p>
+                </div>
+
+                <div class="feature-item" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Fast Service</h3>
+                    <p>Quick order processing and fast delivery of your favorites</p>
+                </div>
+
+                <div class="feature-item" data-aos="fade-up" data-aos-delay="500">
+                    <i class="fas fa-heart"></i>
+                    <h3>Customer Satisfaction</h3>
+                    <p>Your happiness is our priority, 100% satisfaction guaranteed</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="reviews">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Customer Reviews</h2>
+            
+            <div class="review-stats" data-aos="fade-up" data-aos-delay="200">
+                <div class="stat-box">
+                    <div class="stat-number counter">216<span>+</span></div>
+                    <p>Happy Customers</p>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">⭐ 4.8</div>
+                    <p>Average Rating</p>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number counter">5000<span>+</span></div>
+                    <p>Products Sold</p>
+                </div>
+            </div>
+
+            <div class="review-cards">
+                <div class="review-card" data-aos="fade-up" data-aos-delay="0">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">"Best bakery in the area. Fresh cakes and amazing taste! The attention to detail is incredible."</p>
+                    <p class="reviewer-name">- Priya Sharma</p>
+                </div>
+
+                <div class="review-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">"Excellent service and delicious bakery products. My family loves their pastries and cookies!"</p>
+                    <p class="reviewer-name">- Rajesh Kumar</p>
+                </div>
+
+                <div class="review-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">"Highly recommended for cakes and fast food. The quality never compromises and delivery is super fast."</p>
+                    <p class="reviewer-name">- Anjali Patel</p>
+                </div>
+
+                <div class="review-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">"Amazing burgers and sandwiches! Fresh ingredients and perfect taste every single time."</p>
+                    <p class="reviewer-name">- Vikram Singh</p>
+                </div>
+
+                <div class="review-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">"Custom cake for my birthday was absolutely stunning and delicious. Highly professional team!"</p>
+                    <p class="reviewer-name">- Meera Desai</p>
+                </div>
+
+                <div class="review-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">"The pizza and fast food combos are unbeatable. Quick delivery and hot food every time!"</p>
+                    <p class="reviewer-name">- Arjun Reddy</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Our Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="0">
+                    <div class="gallery-item-placeholder">🎂</div>
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="gallery-item-placeholder">🥐</div>
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="gallery-item-placeholder">🍪</div>
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="gallery-item-placeholder">🧁</div>
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="gallery-item-placeholder">🍕</div>
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="gallery-item-placeholder">🍔</div>
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="gallery-item-placeholder">🥪</div>
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="700">
+                    <div class="gallery-item-placeholder">🍟</div>
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title" style="color: white;" data-aos="fade-up">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info" data-aos="fade-right" data-aos-duration="1000">
+                    <h3 style="color: var(--bakery-gold);">Contact Information</h3>
                     
-                    <div class="badge-grid">
-                        <div class="badge-item">
-                            <i class="fa-solid fa-wheat-awn"></i>
-                            <span>Fresh Ingredients</span>
-                        </div>
-                        <div class="badge-item">
-                            <i class="fa-solid fa-user-tie"></i>
-                            <span>Expert Bakers</span>
-                        </div>
-                        <div class="badge-item">
-                            <i class="fa-solid fa-clock"></i>
-                            <span>Daily Fresh Production</span>
-                        </div>
-                        <div class="badge-item">
-                            <i class="fa-solid fa-award"></i>
-                            <span>Quality Assured</span>
+                    <div class="info-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>90093 78380</p>
                         </div>
                     </div>
+
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Address</h4>
+                            <p>BM118, C Sector, Nehru Nagar, Bhopal, Madhya Pradesh 462003, India</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>contact@anytimefreshbake.com</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Business Hours</h4>
+                            <p>Mon - Sun: 7:00 AM - 10:00 PM</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-buttons">
+                        <a href="tel:9009378380" class="btn-contact">
+                            <i class="fas fa-phone"></i> Call Now
+                        </a>
+                        <a href="https://wa.me/919009378380" target="_blank" class="btn-contact">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                    </div>
                 </div>
+
+                <form class="contact-form" data-aos="fade-left" data-aos-duration="1000" id="contactForm">
+                    <h3 style="color: var(--bakery-gold);">Send Us A Message</h3>
+                    
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" placeholder="Enter your name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" placeholder="Enter your email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" placeholder="Enter your phone number">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" placeholder="Enter your message" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Send Message</button>
+                </form>
+            </div>
+
+            <!-- Google Maps Embed -->
+            <div style="margin-top: 50px; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);" data-aos="zoom-in" data-aos-duration="1000">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3660.4234567890123!2d77.39829!3d23.18641!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397c5a8d5c5c5c5d%3A0x5c5c5c5c5c5c5c5c!2sNehru%20Nagar%2C%20Bhopal%2C%20Madhya%20Pradesh!5e0!3m2!1sen!2sin!4v1234567890" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </section>
 
-    <section id="products" class="section-padding products-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up" data-aos-duration="1000">
-                <h2>Our Delicious Menu</h2>
-                <p>Indulge yourself in our wide array of premium baked goods and premium street fast food</p>
-            </div>
-
-            <div class="filter-container" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-                <button class="filter-btn active" onclick="filterMenu('all')">All Delights</button>
-                <button class="filter-btn" onclick="filterMenu('bakery')">Cakes & Sweet treats</button>
-                <button class="filter-btn" onclick="filterMenu('fastfood')">Savory & Fast Food</button>
-            </div>
-
-            <div class="row g-4" id="dynamic-menu-container">
-                </div>
-        </div>
-    </section>
-
-    <section id="why-choose-us" class="section-padding" style="background-color: var(--cream);">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up" data-aos-duration="1000">
-                <h2>Why Choose Us</h2>
-                <p>We strictly maintain standard benchmarks that differentiate us from structural peers across town</p>
-            </div>
-
-            <div class="row g-4">
-                <div class="col-md-4 col-sm-6" data-aos="fade-up" data-aos-duration="800">
-                    <div class="feature-card">
-                        <div class="feature-icon-box"><i class="fa-solid fa-cake-slice"></i></div>
-                        <h4>Freshly Baked Daily</h4>
-                        <p>We never sell stale items. Everything you consume is processed and completed on the exact calendar day.</p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
-                    <div class="feature-card">
-                        <div class="feature-icon-box"><i class="fa-solid fa-seedling"></i></div>
-                        <h4>Premium Ingredients</h4>
-                        <p>From fine organic flour to premium dairy fats, our ingredients are sourced directly from verified partners.</p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
-                    <div class="feature-card">
-                        <div class="feature-icon-box"><i class="fa-solid fa-pump-medical"></i></div>
-                        <h4>Hygienic Kitchen</h4>
-                        <p>Strict safety checks, regular sanitization workflows, and professional kitchen handling tools are deployed daily.</p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
-                    <div class="feature-card">
-                        <div class="feature-icon-box"><i class="fa-solid fa-tags"></i></div>
-                        <h4>Affordable Prices</h4>
-                        <p>High gourmet standards offered strategically at competitive structural prices to fit budget constraints.</p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
-                    <div class="feature-card">
-                        <div class="feature-icon-box"><i class="fa-solid fa-bolt"></i></div>
-                        <h4>Fast Service</h4>
-                        <p>Minimal order processing latency ensures you receive your savory fast foods piping hot without standard delays.</p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6" data-aos="fade-up" data-aos-duration="800" data-aos-delay="500">
-                    <div class="feature-card">
-                        <div class="feature-icon-box"><i class="fa-solid fa-face-smile"></i></div>
-                        <h4>Customer Satisfaction</h4>
-                        <p>Our goal is to build deep culinary relationships with every single guest who enters our establishment.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="reviews" class="section-padding reviews-section">
-        <div class="container">
-            <div class="row align-items-center g-5">
-                <div class="col-lg-4 text-center text-lg-start" data-aos="fade-right" data-aos-duration="1000">
-                    <div class="counter-box">
-                        <span class="counter-number" id="reviewCount">0</span>
-                        <span class="counter-label">Happy Reviews Google Maps</span>
-                    </div>
-                    <div class="counter-box">
-                        <span class="counter-number">5.0</span>
-                        <div class="star-rating fs-3">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                        </div>
-                        <span class="counter-label">Uncompromised Rating Profile</span>
-                    </div>
-                </div>
-
-                <div class="col-lg-8">
-                    <div class="row g-4">
-                        <div class="col-md-6" data-aos="fade-up" data-aos-duration="800">
-                            <div class="testimonial-card">
-                                <div class="star-rating">
-                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                                </div>
-                                <p class="fst-italic">"Best bakery in the area. Fresh cakes and amazing taste! I regularly order custom birthday cakes from them and they deliver flawlessly every single time."</p>
-                                <h5 class="mt-3 text-white">- Aman Sharma</h5>
-                            </div>
-                        </div>
-                        <div class="col-md-6" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
-                            <div class="testimonial-card">
-                                <div class="star-rating">
-                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                                </div>
-                                <p class="fst-italic">"Excellent service and delicious bakery products. The staff handles orders patiently and the premises are pristine. Pastries are remarkably soft."</p>
-                                <h5 class="mt-3 text-white">- Priya Patel</h5>
-                            </div>
-                        </div>
-                        <div class="col-md-12" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
-                            <div class="testimonial-card">
-                                <div class="star-rating">
-                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                                </div>
-                                <p class="fst-italic">"Highly recommended for cakes and fast food. Their burgers and hot grilled paneer sandwiches have a distinct premium flavor profile. Absolutely unmatched value in Bhopal!"</p>
-                                <h5 class="mt-3 text-white">- Rohan Verma</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="gallery" class="section-padding text-center" style="background-color: var(--soft-beige);">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up" data-aos-duration="1000">
-                <h2>Our Premium Visual Gallery</h2>
-                <p>Catch a glimpse of our beautiful products right out of the baking oven</p>
-            </div>
-
-            <div class="gallery-grid" data-aos="fade-up" data-aos-duration="1200">
-                <div class="gallery-item tall" onclick="openLightbox('https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=80&w=800')">
-                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=80&w=800" alt="Cake Showcase">
-                    <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&q=80&w=800')">
-                    <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&q=80&w=800" alt="Pastries Grid">
-                    <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-                </div>
-                <div class="gallery-item wide" onclick="openLightbox('https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=1200')">
-                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=1200" alt="Pizza Display">
-                    <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&q=80&w=800')">
-                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&q=80&w=800" alt="Burger Platter">
-                    <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-                </div>
-                <div class="gallery-item tall" onclick="openLightbox('https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=800')">
-                    <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=800" alt="Breads Fresh">
-                    <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&q=80&w=800')">
-                    <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&q=80&w=800" alt="Sweet Muffin">
-                    <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="modal fade lightbox-modal" id="lightboxModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <button type="button" class="lightbox-close" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
-                    <img src="" id="lightboxTargetImg" class="lightbox-img" alt="Enlarged View">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="adminControlPanelModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content" style="background-color: var(--cream); border-radius: 20px; border: 2px solid var(--bakery-gold);">
-                <div class="modal-header border-0">
-                    <h3 class="modal-title text-heading"><i class="fa-solid fa-sliders me-2 text-warning"></i>Bakery Menu Dashboard</h3>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body p-4">
-                    <form id="adminAddDishForm" onsubmit="handleAdminAddDish(event)">
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label class="form-label font-weight-600">Dish Title Name</label>
-                                <input type="text" id="adminDishTitle" class="form-control" placeholder="Chocolate Truffle Cake" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label font-weight-600">Menu Classification Category</label>
-                                <select id="adminDishCategory" class="form-select form-control" required>
-                                    <option value="bakery">Bakery (Cakes, Sweets, Treats)</option>
-                                    <option value="fastfood">Fast Food (Pizzas, Burgers, Savory)</option>
-                                </select>
-                            </div>
-                            <div class="col-12">
-                                <label class="form-label font-weight-600">Photo Reference Link URL</label>
-                                <input type="url" id="adminDishImage" class="form-control" placeholder="https://images.unsplash.com/..." required>
-                            </div>
-                            <div class="col-12">
-                                <label class="form-label font-weight-600">Product Brief Description</label>
-                                <textarea id="adminDishDesc" class="form-control" rows="3" placeholder="Freshly layered rich dark chocolate truffle glaze fillings..." required></textarea>
-                            </div>
-                            <div class="col-12 mt-3">
-                                <button type="submit" class="btn btn-custom btn-gold w-100 py-2.5"><i class="fa-solid fa-plus me-2"></i>Inject New Menu Item</button>
-                            </div>
-                        </div>
-                    </form>
-
-                    <h4 class="mt-5 mb-3 border-bottom pb-2"><i class="fa-solid fa-list-check me-2"></i>Current Dynamic Menu Shelf</h4>
-                    <div class="table-responsive" style="max-height: 250px; overflow-y: auto;">
-                        <table class="table align-middle text-center table-hover bg-white rounded shadow-sm">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th>Title Name</th>
-                                    <th>Category</th>
-                                    <th>Management Action</th>
-                                </tr>
-                            </thead>
-                            <tbody id="adminDishTableBody">
-                                </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <section id="contact" class="section-padding" style="background-color: var(--cream);">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up" data-aos-duration="1000">
-                <h2>Get In Touch</h2>
-                <p>Visit our storefront or order freshly baked goods directly to your home</p>
-            </div>
-
-            <div class="row g-5">
-                <div class="col-lg-5" data-aos="fade-right" data-aos-duration="1000">
-                    <div class="contact-info-box">
-                        <h3 class="mb-4 text-heading">Storefront Details</h3>
-                        
-                        <div class="contact-item">
-                            <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
-                            <div>
-                                <h5>Our Address</h5>
-                                <p class="mb-0 text-muted">BM118, C Sector, Nehru Nagar, Bhopal, Madhya Pradesh 462003, India</p>
-                            </div>
-                        </div>
-
-                        <div class="contact-item">
-                            <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
-                            <div>
-                                <h5>Direct Mobile Line</h5>
-                                <p class="mb-0 text-muted">+91 90093 78380</p>
-                            </div>
-                        </div>
-
-                        <div class="contact-item">
-                            <div class="contact-icon"><i class="fa-solid fa-clock"></i></div>
-                            <div>
-                                <h5>Operating Timeline</h5>
-                                <p class="mb-0 text-muted">Open Daily: 09:00 AM - 10:30 PM</p>
-                            </div>
-                        </div>
-
-                        <div class="map-container mt-4">
-                            <iframe src="http://googleusercontent.com/maps.google.com/4" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-7" data-aos="fade-left" data-aos-duration="1000">
-                    <div class="contact-form-wrapper">
-                        <h3 class="mb-4 text-heading">Drop An Inquiry</h3>
-                        <form id="bakeryContactForm" onsubmit="handleFormSubmit(event)">
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <label class="form-label font-weight-500">Your Full Name</label>
-                                    <input type="text" class="form-control" placeholder="John Doe" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label font-weight-500">Phone Number</label>
-                                    <input type="tel" class="form-control" placeholder="98765 XXXXX" required>
-                                </div>
-                                <div class="col-12">
-                                    <label class="form-label font-weight-500">Select Order Type</label>
-                                    <select class="form-select form-control">
-                                        <option value="Cake Pre-order">Custom Birthday/Event Cake Pre-order</option>
-                                        <option value="Bulk Order Catering">Bulk Party Catering Inquiry</option>
-                                        <option value="General Feedback">General Feedback & Inquiries</option>
-                                    </select>
-                                </div>
-                                <div class="col-12">
-                                    <label class="form-label font-weight-500">Elaborate Requirements</label>
-                                    <textarea class="form-control" rows="4" placeholder="Flavor preferences, quantities, etc..." required></textarea>
-                                </div>
-                                <div class="col-12 mt-4">
-                                    <button type="submit" class="btn btn-custom btn-gold w-100 py-3"><i class="fa-solid fa-paper-plane me-2"></i>Send Message</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="row g-4">
-                <div class="col-lg-4 col-md-6">
-                    <h4 style="font-family: var(--font-heading); font-weight:700;">Anytime Fresh Bake</h4>
-                    <p class="small text-white-50">Providing supreme indulgence and elite street culinary treats with structural excellence. Visually stunning, hygienically superior baking practices.</p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>🍰 Anytime Fresh Bake</h4>
+                    <p>Premium bakery and fast food serving Bhopal with fresh, delicious products made with love.</p>
                     <div class="social-icons">
-                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/919009378380" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-md-6 footer-links">
+                <div class="footer-section">
                     <h4>Quick Links</h4>
-                    <ul class="list-unstyled">
-                        <li><a href="#">Home Base</a></li>
-                        <li><a href="#about">Our Story</a></li>
-                        <li><a href="#products">Menu Options</a></li>
-                        <li><a href="#why-choose-us">Quality Metrics</a></li>
-                        <li><a href="#contact">Reach Us</a></li>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#reviews">Reviews</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
 
-                <div class="col-lg-5 col-md-12">
-                    <h4>Reach Our Storefront Directly</h4>
-                    <p class="small mb-2"><i class="fa-solid fa-location-dot me-2 text-warning"></i> BM118, C Sector, Nehru Nagar, Bhopal, MP, 462003, India</p>
-                    <p class="small mb-2"><i class="fa-solid fa-phone me-2 text-warning"></i> +91 90093 78380</p>
-                    <p class="small"><i class="fa-solid fa-envelope me-2 text-warning"></i> info@anytimefreshbake.com</p>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <ul>
+                        <li><i class="fas fa-phone" style="color: var(--bakery-gold); margin-right: 10px;"></i><a href="tel:9009378380">90093 78380</a></li>
+                        <li style="margin-top: 10px;"><i class="fas fa-map-marker-alt" style="color: var(--bakery-gold); margin-right: 10px;"></i>BM118, C Sector, Nehru Nagar, Bhopal</li>
+                        <li style="margin-top: 20px;"><i class="fas fa-clock" style="color: var(--bakery-gold); margin-right: 10px;"></i>7:00 AM - 10:00 PM Daily</li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe to get special offers and updates</p>
+                    <form style="display: flex; gap: 10px; margin-top: 15px;" id="newsletterForm">
+                        <input type="email" placeholder="Your email" style="flex: 1; padding: 10px; border: none; border-radius: 5px; background: rgba(255, 255, 255, 0.1); color: white; border: 1px solid rgba(255, 255, 255, 0.2);" required>
+                        <button type="submit" style="padding: 10px 20px; background: var(--bakery-gold); color: white; border: none; border-radius: 5px; cursor: pointer; transition: all 0.3s ease;">Subscribe</button>
+                    </form>
                 </div>
             </div>
-            <hr class="my-4" style="background-color: rgba(255,255,255,0.15);">
-            <div class="row align-items-center">
-                <div class="col-md-6 text-center text-md-start">
-                    <p class="small mb-0">© 2026 Anytime Fresh Bake Bakery & Fast Food. All Rights Reserved.</p>
-                </div>
-                <div class="col-md-6 text-center text-md-end mt-2 mt-md-0">
-                    <span class="small text-white-50">Designed with Pride in Bhopal</span>
-                </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Anytime Fresh Bake Bakery & Fast Food. All rights reserved. | Designed with <i class="fas fa-heart" style="color: var(--warm-orange);"></i> for Bhopal</p>
             </div>
         </div>
     </footer>
 
-    <a href="https://wa.me/919009378380?text=Hello%20Anytime%20Fresh%20Bake%20Bakery,%20I'd%20like%20to%20place%20an%20order!" class="whatsapp-float" target="_blank" aria-label="Order via WhatsApp">
-        <i class="fa-brands fa-whatsapp"></i>
+    <!-- Floating Buttons -->
+    <a href="https://wa.me/919009378380" target="_blank" class="floating-btn floating-whatsapp" title="Chat with us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
     </a>
-
-    <button class="back-to-top" id="btnBackToTop" onclick="scrollToTop()" aria-label="Back To Top">
-        <i class="fa-solid fa-arrow-up"></i>
+    <a href="tel:9009378380" class="floating-btn floating-call" title="Call us">
+        <i class="fas fa-phone-alt"></i>
+    </a>
+    <button class="floating-btn back-to-top" id="backToTop" title="Back to top">
+        <i class="fas fa-arrow-up"></i>
     </button>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
-    <script src="script.js"></script>
+    <script>
+        // Hide loading screen
+        window.addEventListener('load', () => {
+            document.querySelector('.loading-screen').style.display = 'none';
+        });
+
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: false,
+            easing: 'ease-in-out'
+        });
+
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.querySelector('.scroll-progress').style.width = scrollPercent + '%';
+        });
+
+        // Back to Top Button
+        const backToTopBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Counter Animation
+        function animateCounter(element, target, duration = 2000) {
+            let current = 0;
+            const increment = target / (duration / 16);
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(current) + (element.nextSibling?.textContent === '+' ? '' : '');
+            }, 16);
+        }
+
+        // Trigger counter animation when in view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.target.classList.contains('counter')) {
+                    const target = parseInt(entry.target.textContent);
+                    if (target) {
+                        animateCounter(entry.target, target);
+                        observer.unobserve(entry.target);
+                    }
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.counter').forEach(el => observer.observe(el));
+
+        // Contact Form Submission
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
+
+            // Create WhatsApp message
+            const whatsappMessage = `Hello Anytime Fresh Bake,\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nMessage: ${message}`;
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            window.open(`https://wa.me/919009378380?text=${encodedMessage}`, '_blank');
+
+            // Reset form
+            document.getElementById('contactForm').reset();
+            alert('Thank you for your message! Redirecting to WhatsApp...');
+        });
+
+        // Newsletter Form
+        document.getElementById('newsletterForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for subscribing! Check your email for updates.');
+            e.target.reset();
+        });
+
+        // Mobile menu close on link click
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const navbarToggle = document.querySelector('.navbar-toggler');
+                if (navbarToggle.offsetParent !== null) {
+                    navbarToggle.click();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
