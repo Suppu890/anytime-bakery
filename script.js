@@ -1,174 +1,163 @@
-/* --- APPLICATION EXECUTION MODULES --- */
+// DEFAULT PRE-LOADED BAKERY PRODUCTS
+const defaultDishes = [
+    { id: 1, title: "Premium Birthday Cakes", category: "bakery", image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=80&w=600", description: "Custom gourmet cakes crafted for birthdays and elite celebrations." },
+    { id: 2, title: "Rich Cream Pastries", category: "bakery", image: "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&q=80&w=600", description: "Mouth-watering cream slices available in dense chocolate variants." },
+    { id: 3, title: "Cheesy Pan Pizzas", category: "fastfood", image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=600", description: "Freshly pulled dough bases loaded with robust sauces and mozzarella." },
+    { id: 4, title: "Gourmet Grilled Burgers", category: "fastfood", image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&q=80&w=600", description: "Crisp seasoned vegetable patties layered inside soft brioche buns." }
+];
 
-// Initialize Framework Components on Page Load
+// INITIALIZATION PIPELINE
 document.addEventListener("DOMContentLoaded", function() {
-    // 1. Trigger Animation Library Framework
-    AOS.init({
-        once: true,
-        mirror: false
-    });
+    AOS.init({ once: true, mirror: false });
     
-    // 2. Clear Screen Preloader Sequence Cleanly
+    // Clear Preloader Screen
     const preloader = document.getElementById('preloader');
     setTimeout(() => {
         preloader.style.opacity = '0';
-        setTimeout(() => { 
-            preloader.style.display = 'none'; 
-        }, 500);
-        
-        // 3. Initiate Live Incremental Counter Modules
+        setTimeout(() => { preloader.style.display = 'none'; }, 500);
         animateCounter("reviewCount", 0, 216, 2000);
     }, 800);
 
-    // 4. Load JSON Content via CMS Portal Hook Automatically
-    loadCMSDishes();
+    // Initialize Local Storage Menu
+    if (!localStorage.getItem('bakeryMenu')) {
+        localStorage.setItem('bakeryMenu', JSON.stringify(defaultDishes));
+    }
+    
+    renderMenuCardUI('all');
 });
 
-// Window Scroll Animation Tracking Engine
-window.onscroll = function() {
-    handleWindowScrollPhysics();
-};
+// CORE MENU DISPLAY RENDERING ENGINE
+function renderMenuCardUI(filterCategory = 'all') {
+    const container = document.getElementById('dynamic-menu-container');
+    if (!container) return;
+    
+    const currentMenu = JSON.parse(localStorage.getItem('bakeryMenu')) || [];
+    container.innerHTML = "";
 
-function handleWindowScrollPhysics() {
+    currentMenu.forEach(dish => {
+        if (filterCategory === 'all' || dish.category === filterCategory) {
+            const cardHTML = `
+                <div class="col-lg-3 col-md-6 menu-item ${dish.category}" data-aos="zoom-in" data-aos-duration="800">
+                    <div class="product-card">
+                        <div class="product-img-wrapper">
+                            <img src="${dish.image}" alt="${dish.title}" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">${dish.title}</h3>
+                            <p class="product-desc">${dish.description}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.innerHTML += cardHTML;
+        }
+    });
+    AOS.refresh();
+}
+
+// SECURE ADMIN POPUP PASSWORD TRIGGER
+function triggerAdminLogin() {
+    const accessKey = prompt("🔒 Enter Secure Admin Password Workspace Access:");
+    
+    // Master secret entry password code
+    if (accessKey === "Bhopal78380") {
+        alert("🔓 Access Granted. Opening Bakery Admin Dashboard Panel...");
+        populateAdminTable();
+        const controlPanel = new bootstrap.Modal(document.getElementById('adminControlPanelModal'));
+        controlPanel.show();
+    } else if (accessKey !== null) {
+        alert("❌ Invalid Admin Password. Entry Request Terminated.");
+    }
+}
+
+// DASHBOARD: ADD NEW DISH FUNCTION
+function handleAdminAddDish(event) {
+    event.preventDefault();
+    
+    const title = document.getElementById('adminDishTitle').value;
+    const category = document.getElementById('adminDishCategory').value;
+    const image = document.getElementById('adminDishImage').value;
+    const description = document.getElementById('adminDishDesc').value;
+
+    const currentMenu = JSON.parse(localStorage.getItem('bakeryMenu')) || [];
+    
+    const newDish = {
+        id: Date.now(),
+        title: title,
+        category: category,
+        image: image,
+        description: description
+    };
+
+    currentMenu.push(newDish);
+    localStorage.setItem('bakeryMenu', JSON.stringify(currentMenu));
+    
+    document.getElementById('adminAddDishForm').reset();
+    populateAdminTable();
+    renderMenuCardUI('all');
+    alert("✨ Success! New dish appended live onto the public storefront.");
+}
+
+// DASHBOARD: DELETE DISH FUNCTION
+function deleteMenuNode(id) {
+    if (confirm("Are you sure you want to delete this menu product completely?")) {
+        let currentMenu = JSON.parse(localStorage.getItem('bakeryMenu')) || [];
+        currentMenu = currentMenu.filter(item => item.id !== id);
+        localStorage.setItem('bakeryMenu', JSON.stringify(currentMenu));
+        populateAdminTable();
+        renderMenuCardUI('all');
+    }
+}
+
+// POPULATE DASHBOARD GRID TABLE VIEW
+function populateAdminTable() {
+    const tbody = document.getElementById('adminDishTableBody');
+    if (!tbody) return;
+    
+    const currentMenu = JSON.parse(localStorage.getItem('bakeryMenu')) || [];
+    tbody.innerHTML = "";
+
+    currentMenu.forEach(item => {
+        const row = `
+            <tr>
+                <td class="fw-bold text-dark">${item.title}</td>
+                <td><span class="badge bg-secondary text-uppercase">${item.category}</span></td>
+                <td>
+                    <button class="btn btn-sm btn-danger px-2 py-1" onclick="deleteMenuNode(${item.id})">
+                        <i class="fa-solid fa-trash-can"></i> Remove
+                    </button>
+                </td>
+            </tr>
+        `;
+        tbody.innerHTML += row;
+    });
+}
+
+// SITE NAVIGATION SCROLLING MECHANICS
+window.onscroll = function() {
     const navbar = document.querySelector('.navbar');
     const backToTop = document.getElementById('btnBackToTop');
     const scrollProgress = document.getElementById('scroll-progress');
     
-    // Calculate page visibility progress height percentages
     const totalHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     const progressPercent = (window.pageYOffset / totalHeight) * 100;
-    scrollProgress.style.width = progressPercent + "%";
+    if (scrollProgress) scrollProgress.style.width = progressPercent + "%";
 
-    // Toggle scroll configurations on Glassmorphism Nav Header
-    if (window.pageYOffset > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
+    if (window.pageYOffset > 50) navbar.classList.add('scrolled');
+    else navbar.classList.remove('scrolled');
 
-    // Toggle view states on Back-to-Top trigger button
-    if (window.pageYOffset > 400) {
-        backToTop.classList.add('visible');
-    } else {
-        backToTop.classList.remove('visible');
-    }
-}
+    if (window.pageYOffset > 400) backToTop.classList.add('visible');
+    else backToTop.classList.remove('visible');
+};
 
-// Back to Top smooth scroll sequence execution
-function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// Menu Tab Category Filtering Controller
 function filterMenu(category) {
-    const items = document.querySelectorAll('.menu-item');
     const buttons = document.querySelectorAll('.filter-btn');
-    
-    // Sync Button Selection Indicators
-    buttons.forEach(btn => {
-        btn.classList.remove('active');
-    });
-    
-    if (event && event.target) {
-        event.target.classList.add('active');
-    }
-
-    // Toggle card scale layouts dynamically
-    items.forEach(item => {
-        if (category === 'all') {
-            item.style.display = 'block';
-            setTimeout(() => { item.style.opacity = '1'; item.style.transform = 'scale(1)'; }, 50);
-        } else {
-            if (item.classList.contains(category)) {
-                item.style.display = 'block';
-                setTimeout(() => { item.style.opacity = '1'; item.style.transform = 'scale(1)'; }, 50);
-            } else {
-                item.style.opacity = '0';
-                item.style.transform = 'scale(0.8)';
-                setTimeout(() => { item.style.display = 'none'; }, 300);
-            }
-        }
-    });
+    buttons.forEach(btn => btn.classList.remove('active'));
+    if (event && event.target) event.target.classList.add('active');
+    renderMenuCardUI(category);
 }
 
-// Live Graphical Value Increment Engine
-function animateCounter(id, start, end, duration) {
-    const obj = document.getElementById(id);
-    if (!obj) return;
-    let startTimestamp = null;
-    const step = (timestamp) => {
-        if (!startTimestamp) startTimestamp = timestamp;
-        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-        obj.innerHTML = Math.floor(progress * (end - start) + start) + "+";
-        if (progress < 1) {
-            window.requestAnimationFrame(step);
-        }
-    };
-    window.requestAnimationFrame(step);
-}
-
-// Modal Lightbox Preview Handler Logic
-function openLightbox(imgUrl) {
-    const targetImg = document.getElementById('lightboxTargetImg');
-    if (!targetImg) return;
-    targetImg.src = imgUrl;
-    const myModal = new bootstrap.Modal(document.getElementById('lightboxModal'));
-    myModal.show();
-}
-
-// Client Form Submission Event Route Capture
-function handleFormSubmit(event) {
-    event.preventDefault();
-    alert("Thank you for your submission! Our team will reach out shortly regarding your custom bakery inquiry.");
-    document.getElementById('bakeryContactForm').reset();
-}
-
-// Dynamic Fetch Integration mapping files straight from GitHub CMS Folders
-async function loadCMSDishes() {
-    const container = document.getElementById('dynamic-menu-container');
-    if (!container) return;
-
-    // REMINDER: Replace these placeholders with your real handles to activate the live feed
-    const repoOwner = "suppu890"; 
-    const repoName = "anytime-bakery";       
-    
-    try {
-        const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/data/dishes`);
-        if (!response.ok) throw new Error("Target collection directory initialization failed");
-        
-        const files = await response.json();
-        container.innerHTML = ""; // Wipe loading placeholder layouts cleanly
-
-        for (let file of files) {
-            if (file.name.endsWith('.json')) {
-                const dataResponse = await fetch(file.download_url);
-                const dish = await dataResponse.json();
-                
-                const cardHTML = `
-                    <div class="col-lg-3 col-md-6 menu-item ${dish.category}" data-aos="zoom-in" data-aos-duration="800">
-                        <div class="product-card">
-                            <div class="product-img-wrapper">
-                                <img src="${dish.image}" alt="${dish.title}" class="product-img">
-                            </div>
-                            <div class="product-info">
-                                <h3 class="product-title">${dish.title}</h3>
-                                <p class="product-desc">${dish.description}</p>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                container.innerHTML += cardHTML;
-            }
-        }
-        
-        // Instruct AOS to re-scan layout depth for new structural nodes
-        AOS.refresh();
-
-    } catch (error) {
-        console.error("Error fetching dynamic CMS nodes:", error);
-        container.innerHTML = `
-            <div class="text-center col-12 my-4">
-                <p class="text-muted">Enter active dish files into your dashboard data folder to display dynamic dishes here.</p>
-            </div>`;
-    }
-}
+function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+function openLightbox(url) { document.getElementById('lightboxTargetImg').src = url; new bootstrap.Modal(document.getElementById('lightboxModal')).show(); }
+function handleFormSubmit(e) { e.preventDefault(); alert("Inquiry sent successfully!"); document.getElementById('bakeryContactForm').reset(); }
+function animateCounter(id,s,e,d){const o=document.getElementById(id);if(!o)return;let t=null;const step=(cp)=>{if(!t)t=cp;const p=Math.min((cp-t)/d,1);o.innerHTML=Math.floor(p*(e-s)+s)+"+";if(p<1)window.requestAnimationFrame(step);};window.requestAnimationFrame(step);}
