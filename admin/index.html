@@ -1,12 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Anytime Fresh Bake - Admin Dashboard</title>
-</head>
-<body>
-  <!-- Include the script that powers the Decap CMS dashboard -->
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-</body>
-</html>
+<section id="products" class="section-padding products-section">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up" data-aos-duration="1000">
+            <h2>Our Delicious Menu</h2>
+            <p>Indulge yourself in our wide array of premium baked goods and premium street fast food</p>
+        </div>
+
+        <div class="filter-container" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+            <button class="filter-btn active" onclick="filterMenu('all')">All Delights</button>
+            <button class="filter-btn" onclick="filterMenu('bakery')">Cakes & Sweet treats</button>
+            <button class="filter-btn" onclick="filterMenu('fastfood')">Savory & Fast Food</button>
+        </div>
+
+        <div class="row g-4" id="dynamic-menu-container">
+            <div class="text-center col-12">
+                <p>Loading our delicious specialties...</p>
+            </div>
+        </div>
+    </div>
+</section>
