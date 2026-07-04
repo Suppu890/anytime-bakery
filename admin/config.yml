@@ -1,15 +1,17 @@
 backend:
   name: github
-  repo: YOUR_GITHUB_USERNAME/YOUR_REPO_NAME # Replace with your real username/repo names
-  branch: main # Or master, depending on your default branch
+  repo: YOUR_GITHUB_USERNAME/YOUR_REPO_NAME
+  branch: main
 
-media_folder: "assets/images" # Where uploaded dish photos will be saved
+media_folder: "assets/images"
 public_folder: "/assets/images"
 
 collections:
   - name: "dishes"
     label: "Bakery Menu Dishes"
-    folder: "data/dishes" # Where dish details will be saved as small files
+    folder: "data/dishes"
+    extension: "json" # Forces the CMS to save data as a readable JSON file
+    format: "json"
     create: true
     slug: "{{slug}}"
     fields:
