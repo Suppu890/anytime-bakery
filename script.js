@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
         animateCounter("reviewCount", 0, 216, 2000);
     }, 800);
 
-    // 4. Load JSON Content via Decap CMS Data Portal Hook
+    // 4. Load JSON Content via CMS Portal Hook Automatically
     loadCMSDishes();
 });
 
@@ -119,7 +119,7 @@ function openLightbox(imgUrl) {
 // Client Form Submission Event Route Capture
 function handleFormSubmit(event) {
     event.preventDefault();
-    alert("Thank you for your submission! Our backend manager will reach out shortly regarding your custom bakery inquiry.");
+    alert("Thank you for your submission! Our team will reach out shortly regarding your custom bakery inquiry.");
     document.getElementById('bakeryContactForm').reset();
 }
 
@@ -128,9 +128,9 @@ async function loadCMSDishes() {
     const container = document.getElementById('dynamic-menu-container');
     if (!container) return;
 
-    // IMPORTANT: Replace these two string fields with your actual deployment handles
-    const repoOwner = "YOUR_GITHUB_USERNAME"; 
-    const repoName = "YOUR_REPO_NAME";       
+    // REMINDER: Replace these placeholders with your real handles to activate the live feed
+    const repoOwner = "suppu890"; 
+    const repoName = "anytime-bakery";       
     
     try {
         const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/data/dishes`);
@@ -168,7 +168,7 @@ async function loadCMSDishes() {
         console.error("Error fetching dynamic CMS nodes:", error);
         container.innerHTML = `
             <div class="text-center col-12 my-4">
-                <p class="text-muted">Fill out your repository settings inside script.js to initialize the direct admin upload channel.</p>
+                <p class="text-muted">Enter active dish files into your dashboard data folder to display dynamic dishes here.</p>
             </div>`;
     }
 }
