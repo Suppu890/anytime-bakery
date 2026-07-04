@@ -1,21 +1,30 @@
 /* --- APPLICATION EXECUTION MODULES --- */
 
-// Initialize AOS animations Framework
+// Initialize Framework Components on Page Load
 document.addEventListener("DOMContentLoaded", function() {
+    // 1. Trigger Animation Library Framework
     AOS.init({
         once: true,
         mirror: false
     });
     
+    // 2. Clear Screen Preloader Sequence Cleanly
     const preloader = document.getElementById('preloader');
     setTimeout(() => {
         preloader.style.opacity = '0';
-        setTimeout(() => { preloader.style.display = 'none'; }, 500);
+        setTimeout(() => { 
+            preloader.style.display = 'none'; 
+        }, 500);
+        
+        // 3. Initiate Live Incremental Counter Modules
         animateCounter("reviewCount", 0, 216, 2000);
     }, 800);
+
+    // 4. Load JSON Content via Decap CMS Data Portal Hook
+    loadCMSDishes();
 });
 
-// Sticky Navbar Transformation Framework Hook
+// Window Scroll Animation Tracking Engine
 window.onscroll = function() {
     handleWindowScrollPhysics();
 };
@@ -25,16 +34,19 @@ function handleWindowScrollPhysics() {
     const backToTop = document.getElementById('btnBackToTop');
     const scrollProgress = document.getElementById('scroll-progress');
     
+    // Calculate page visibility progress height percentages
     const totalHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     const progressPercent = (window.pageYOffset / totalHeight) * 100;
     scrollProgress.style.width = progressPercent + "%";
 
+    // Toggle scroll configurations on Glassmorphism Nav Header
     if (window.pageYOffset > 50) {
         navbar.classList.add('scrolled');
     } else {
         navbar.classList.remove('scrolled');
     }
 
+    // Toggle view states on Back-to-Top trigger button
     if (window.pageYOffset > 400) {
         backToTop.classList.add('visible');
     } else {
@@ -42,25 +54,26 @@ function handleWindowScrollPhysics() {
     }
 }
 
+// Back to Top smooth scroll sequence execution
 function scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// Menu Tab Category Sorting Module Engine
+// Menu Tab Category Filtering Controller
 function filterMenu(category) {
     const items = document.querySelectorAll('.menu-item');
     const buttons = document.querySelectorAll('.filter-btn');
     
+    // Sync Button Selection Indicators
     buttons.forEach(btn => {
-        if(btn.setAttribute('onclick', `filterMenu('${category}')`)) {
-            btn.classList.add('active');
-        } else {
-            btn.classList.remove('active');
-        }
+        btn.classList.remove('active');
     });
     
-    event.target.classList.add('active');
+    if (event && event.target) {
+        event.target.classList.add('active');
+    }
 
+    // Toggle card scale layouts dynamically
     items.forEach(item => {
         if (category === 'all') {
             item.style.display = 'block';
@@ -78,9 +91,10 @@ function filterMenu(category) {
     });
 }
 
-// Live Numerical Counter Engine
+// Live Graphical Value Increment Engine
 function animateCounter(id, start, end, duration) {
     const obj = document.getElementById(id);
+    if (!obj) return;
     let startTimestamp = null;
     const step = (timestamp) => {
         if (!startTimestamp) startTimestamp = timestamp;
@@ -93,33 +107,37 @@ function animateCounter(id, start, end, duration) {
     window.requestAnimationFrame(step);
 }
 
-// Custom Modal Image Lightbox Core Actions Logic
+// Modal Lightbox Preview Handler Logic
 function openLightbox(imgUrl) {
     const targetImg = document.getElementById('lightboxTargetImg');
+    if (!targetImg) return;
     targetImg.src = imgUrl;
     const myModal = new bootstrap.Modal(document.getElementById('lightboxModal'));
     myModal.show();
 }
 
-// Simple Form Submission Event Simulation Catch handler
+// Client Form Submission Event Route Capture
 function handleFormSubmit(event) {
     event.preventDefault();
-    alert("Thank you for your submission! Our representative will reach out shortly.");
+    alert("Thank you for your submission! Our backend manager will reach out shortly regarding your custom bakery inquiry.");
     document.getElementById('bakeryContactForm').reset();
 }
 
-// Load CMS Dishes dynamically
+// Dynamic Fetch Integration mapping files straight from GitHub CMS Folders
 async function loadCMSDishes() {
     const container = document.getElementById('dynamic-menu-container');
-    const repoOwner = "YOUR_GITHUB_USERNAME"; // Change this
-    const repoName = "YOUR_REPO_NAME";       // Change this
+    if (!container) return;
+
+    // IMPORTANT: Replace these two string fields with your actual deployment handles
+    const repoOwner = "YOUR_GITHUB_USERNAME"; 
+    const repoName = "YOUR_REPO_NAME";       
     
     try {
         const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/data/dishes`);
-        if (!response.ok) throw new Error("Failed to scan dishes directory");
-        const files = await response.json();
+        if (!response.ok) throw new Error("Target collection directory initialization failed");
         
-        container.innerHTML = "";
+        const files = await response.json();
+        container.innerHTML = ""; // Wipe loading placeholder layouts cleanly
 
         for (let file of files) {
             if (file.name.endsWith('.json')) {
@@ -143,15 +161,14 @@ async function loadCMSDishes() {
             }
         }
         
+        // Instruct AOS to re-scan layout depth for new structural nodes
         AOS.refresh();
 
     } catch (error) {
-        console.error("Error loading CMS data:", error);
-        container.innerHTML = `<div class="text-center col-12"><p class="text-danger">Failed to load the live menu.</p></div>`;
+        console.error("Error fetching dynamic CMS nodes:", error);
+        container.innerHTML = `
+            <div class="text-center col-12 my-4">
+                <p class="text-muted">Fill out your repository settings inside script.js to initialize the direct admin upload channel.</p>
+            </div>`;
     }
 }
-
-// Call CMS load function
-document.addEventListener("DOMContentLoaded", function() {
-    loadCMSDishes();
-});
