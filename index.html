@@ -6,38 +6,29 @@
     <title>Anytime Fresh Bake Bakery & Fast Food | Bhopal</title>
     <meta name="description" content="Delicious Cakes, Pastries, Cookies, Fast Food & Fresh Bakery Products Made With Love in Bhopal. Over 216+ Happy Customer Reviews.">
     
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=32&h=32&fit=crop&crop=faces">
 
-    <!-- Fonts: Playfair Display & Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     
-    <!-- Font Awesome 6 Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     
-    <!-- AOS Animation Library -->
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
-    <!-- Connection to our external stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- PRELOADER -->
     <div id="preloader">
         <div class="loader-spinner"></div>
         <h4 class="mt-3" style="color: var(--chocolate-brown); letter-spacing: 2px;">Baking Happiness...</h4>
     </div>
 
-    <!-- SCROLL PROGRESS BAR -->
     <div id="scroll-progress"></div>
 
-    <!-- GLASSMORPHISM STICKY NAVBAR -->
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
             <a class="navbar-brand" href="#">
@@ -66,7 +57,6 @@
                     <li class="nav-item"><a class="nav-link" href="#reviews">Reviews</a></li>
                     <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                    <!-- Premium Admin Link (Triggers Javascript Modal Login) -->
                     <li class="nav-item ms-lg-2">
                         <button class="btn btn-sm btn-outline-brown px-3 py-1.5" onclick="triggerAdminLogin()" style="font-size: 0.8rem; border-radius: 20px;">
                             <i class="fa-solid fa-lock me-1"></i> Admin Portal
@@ -77,7 +67,6 @@
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
     <section class="hero-section">
         <div class="container">
             <div class="row">
@@ -94,7 +83,6 @@
         </div>
     </section>
 
-    <!-- ABOUT US SECTION -->
     <section id="about" class="section-padding about-section">
         <div class="container">
             <div class="row align-items-center g-5">
@@ -132,7 +120,6 @@
         </div>
     </section>
 
-    <!-- PRODUCTS SECTION -->
     <section id="products" class="section-padding products-section">
         <div class="container">
             <div class="section-header" data-aos="fade-up" data-aos-duration="1000">
@@ -140,21 +127,17 @@
                 <p>Indulge yourself in our wide array of premium baked goods and premium street fast food</p>
             </div>
 
-            <!-- Category Filter Buttons -->
             <div class="filter-container" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                 <button class="filter-btn active" onclick="filterMenu('all')">All Delights</button>
                 <button class="filter-btn" onclick="filterMenu('bakery')">Cakes & Sweet treats</button>
                 <button class="filter-btn" onclick="filterMenu('fastfood')">Savory & Fast Food</button>
             </div>
 
-            <!-- DYNAMIC MENU CARDS CONTAINER -->
             <div class="row g-4" id="dynamic-menu-container">
-                <!-- JavaScript will generate menu cards here -->
-            </div>
+                </div>
         </div>
     </section>
 
-    <!-- WHY CHOOSE US SECTION -->
     <section id="why-choose-us" class="section-padding" style="background-color: var(--cream);">
         <div class="container">
             <div class="section-header" data-aos="fade-up" data-aos-duration="1000">
@@ -209,7 +192,6 @@
         </div>
     </section>
 
-    <!-- REVIEWS & LIVE ANIMATED COUNTERS SECTION -->
     <section id="reviews" class="section-padding reviews-section">
         <div class="container">
             <div class="row align-items-center g-5">
@@ -229,285 +211,4 @@
 
                 <div class="col-lg-8">
                     <div class="row g-4">
-                        <div class="col-md-6" data-aos="fade-up" data-aos-duration="800">
-                            <div class="testimonial-card">
-                                <div class="star-rating">
-                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                                </div>
-                                <p class="fst-italic">"Best bakery in the area. Fresh cakes and amazing taste! I regularly order custom birthday cakes from them and they deliver flawlessly every single time."</p>
-                                <h5 class="mt-3 text-white">- Aman Sharma</h5>
-                            </div>
-                        </div>
-                        <div class="col-md-6" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
-                            <div class="testimonial-card">
-                                <div class="star-rating">
-                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                                </div>
-                                <p class="fst-italic">"Excellent service and delicious bakery products. The staff handles orders patiently and the premises are pristine. Pastries are remarkably soft."</p>
-                                <h5 class="mt-3 text-white">- Priya Patel</h5>
-                            </div>
-                        </div>
-                        <div class="col-md-12" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
-                            <div class="testimonial-card">
-                                <div class="star-rating">
-                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                                </div>
-                                <p class="fst-italic">"Highly recommended for cakes and fast food. Their burgers and hot grilled paneer sandwiches have a distinct premium flavor profile. Absolutely unmatched value in Bhopal!"</p>
-                                <h5 class="mt-3 text-white">- Rohan Verma</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- MASONRY GALLERY SECTION -->
-    <section id="gallery" class="section-padding text-center" style="background-color: var(--soft-beige);">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up" data-aos-duration="1000">
-                <h2>Our Premium Visual Gallery</h2>
-                <p>Catch a glimpse of our beautiful products right out of the baking oven</p>
-            </div>
-
-            <div class="gallery-grid" data-aos="fade-up" data-aos-duration="1200">
-                <div class="gallery-item tall" onclick="openLightbox('https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=80&w=800')">
-                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=80&w=800" alt="Cake Showcase">
-                    <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&q=80&w=800')">
-                    <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&q=80&w=800" alt="Pastries Grid">
-                    <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-                </div>
-                <div class="gallery-item wide" onclick="openLightbox('https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=1200')">
-                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=1200" alt="Pizza Display">
-                    <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&q=80&w=800')">
-                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&q=80&w=800" alt="Burger Platter">
-                    <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-                </div>
-                <div class="gallery-item tall" onclick="openLightbox('https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=800')">
-                    <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=800" alt="Breads Fresh">
-                    <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&q=80&w=800')">
-                    <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&q=80&w=800" alt="Sweet Muffin">
-                    <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- LIGHTBOX MODAL CONTAINER -->
-    <div class="modal fade lightbox-modal" id="lightboxModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <button type="button" class="lightbox-close" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
-                    <img src="" id="lightboxTargetImg" class="lightbox-img" alt="Enlarged View">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- DYNAMIC BUILT-IN ADMIN CONTROL PANEL MODAL -->
-    <div class="modal fade" id="adminControlPanelModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content" style="background-color: var(--cream); border-radius: 20px; border: 2px solid var(--bakery-gold);">
-                <div class="modal-header border-0">
-                    <h3 class="modal-title text-heading"><i class="fa-solid fa-sliders me-2 text-warning"></i>Bakery Menu Dashboard</h3>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body p-4">
-                    <!-- Dashboard Add Form Layout -->
-                    <form id="adminAddDishForm" onsubmit="handleAdminAddDish(event)">
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label class="form-label font-weight-600">Dish Title Name</label>
-                                <input type="text" id="adminDishTitle" class="form-control" placeholder="Chocolate Truffle Cake" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label font-weight-600">Menu Classification Category</label>
-                                <select id="adminDishCategory" class="form-select form-control" required>
-                                    <option value="bakery">Bakery (Cakes, Sweets, Treats)</option>
-                                    <option value="fastfood">Fast Food (Pizzas, Burgers, Savory)</option>
-                                </select>
-                            </div>
-                            <div class="col-12">
-                                <label class="form-label font-weight-600">Photo Reference Link URL</label>
-                                <input type="url" id="adminDishImage" class="form-control" placeholder="https://images.unsplash.com/..." required>
-                                <small class="text-muted d-block mt-1">Paste any direct unsplash or public photo link address.</small>
-                            </div>
-                            <div class="col-12">
-                                <label class="form-label font-weight-600">Product Brief Description</label>
-                                <textarea id="adminDishDesc" class="form-control" rows="3" placeholder="Freshly layered rich dark chocolate truffle glaze fillings..." required></textarea>
-                            </div>
-                            <div class="col-12 mt-3">
-                                <button type="submit" class="btn btn-custom btn-gold w-100 py-2.5"><i class="fa-solid fa-plus me-2"></i>Inject New Menu Item</button>
-                            </div>
-                        </div>
-                    </form>
-
-                    <!-- Active Items List Management Table -->
-                    <h4 class="mt-5 mb-3 border-bottom pb-2"><i class="fa-solid fa-list-check me-2"></i>Current Dynamic Menu Shelf</h4>
-                    <div class="table-responsive" style="max-height: 250px; overflow-y: auto;">
-                        <table class="table align-middle text-center table-hover bg-white rounded shadow-sm">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th>Title Name</th>
-                                    <th>Category</th>
-                                    <th>Management Action</th>
-                                </tr>
-                            </thead>
-                            <tbody id="adminDishTableBody">
-                                <!-- JavaScript rows populated dynamically here -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- CONTACT SECTION -->
-    <section id="contact" class="section-padding" style="background-color: var(--cream);">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up" data-aos-duration="1000">
-                <h2>Get In Touch</h2>
-                <p>Visit our storefront or order freshly baked goods directly to your home</p>
-            </div>
-
-            <div class="row g-5">
-                <div class="col-lg-5" data-aos="fade-right" data-aos-duration="1000">
-                    <div class="contact-info-box">
-                        <h3 class="mb-4 text-heading">Storefront Details</h3>
-                        
-                        <div class="contact-item">
-                            <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
-                            <div>
-                                <h5>Our Address</h5>
-                                <p class="mb-0 text-muted">BM118, C Sector, Nehru Nagar, Bhopal, Madhya Pradesh 462003, India</p>
-                            </div>
-                        </div>
-
-                        <div class="contact-item">
-                            <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
-                            <div>
-                                <h5>Direct Mobile Line</h5>
-                                <p class="mb-0 text-muted">+91 90093 78380</p>
-                            </div>
-                        </div>
-
-                        <div class="contact-item">
-                            <div class="contact-icon"><i class="fa-solid fa-clock"></i></div>
-                            <div>
-                                <h5>Operating Timeline</h5>
-                                <p class="mb-0 text-muted">Open Daily: 09:00 AM - 10:30 PM</p>
-                            </div>
-                        </div>
-
-                        <div class="map-container mt-4">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3666.5772394595294!2d77.38600867587841!3d23.222047809495147!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397c42ef261895b9%3A0x6bbaaa3d902642a8!2sC-Sector%2C%20Nehru%20Nagar%2C%20Bhopal%2C%20Madhya%20Pradesh%20462003!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-7" data-aos="fade-left" data-aos-duration="1000">
-                    <div class="contact-form-wrapper">
-                        <h3 class="mb-4 text-heading">Drop An Inquiry</h3>
-                        <form id="bakeryContactForm" onsubmit="handleFormSubmit(event)">
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <label class="form-label font-weight-500">Your Full Name</label>
-                                    <input type="text" class="form-control" placeholder="John Doe" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label font-weight-500">Phone Number</label>
-                                    <input type="tel" class="form-control" placeholder="98765 XXXXX" required>
-                                </div>
-                                <div class="col-12">
-                                    <label class="form-label font-weight-500">Select Order Type</label>
-                                    <select class="form-select form-control">
-                                        <option value="Cake Pre-order">Custom Birthday/Event Cake Pre-order</option>
-                                        <option value="Bulk Order Catering">Bulk Party Catering Inquiry</option>
-                                        <option value="General Feedback">General Feedback & Inquiries</option>
-                                    </select>
-                                </div>
-                                <div class="col-12">
-                                    <label class="form-label font-weight-500">Elaborate Requirements</label>
-                                    <textarea class="form-control" rows="4" placeholder="Flavor preferences, quantities, etc..." required></textarea>
-                                </div>
-                                <div class="col-12 mt-4">
-                                    <button type="submit" class="btn btn-custom btn-gold w-100 py-3"><i class="fa-solid fa-paper-plane me-2"></i>Send Message</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER SECTION LAYOUT -->
-    <footer>
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-lg-4 col-md-6">
-                    <h4 style="font-family: var(--font-heading); font-weight:700;">Anytime Fresh Bake</h4>
-                    <p class="small text-white-50">Providing supreme indulgence and elite street culinary treats with structural excellence. Visually stunning, hygienically superior baking practices.</p>
-                    <div class="social-icons">
-                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 footer-links">
-                    <h4>Quick Links</h4>
-                    <ul class="list-unstyled">
-                        <li><a href="#">Home Base</a></li>
-                        <li><a href="#about">Our Story</a></li>
-                        <li><a href="#products">Menu Options</a></li>
-                        <li><a href="#why-choose-us">Quality Metrics</a></li>
-                        <li><a href="#contact">Reach Us</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-lg-5 col-md-12">
-                    <h4>Reach Our Storefront Directly</h4>
-                    <p class="small mb-2"><i class="fa-solid fa-location-dot me-2 text-warning"></i> BM118, C Sector, Nehru Nagar, Bhopal, MP, 462003, India</p>
-                    <p class="small mb-2"><i class="fa-solid fa-phone me-2 text-warning"></i> +91 90093 78380</p>
-                    <p class="small"><i class="fa-solid fa-envelope me-2 text-warning"></i> info@anytimefreshbake.com</p>
-                </div>
-            </div>
-            <hr class="my-4" style="background-color: rgba(255,255,255,0.15);">
-            <div class="row align-items-center">
-                <div class="col-md-6 text-center text-md-start">
-                    <p class="small mb-0">© 2026 Anytime Fresh Bake Bakery & Fast Food. All Rights Reserved.</p>
-                </div>
-                <div class="col-md-6 text-center text-md-end mt-2 mt-md-0">
-                    <span class="small text-white-50">Designed with Pride in Bhopal</span>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- INTERACTIVE FLOATING WHATSAPP BUTTON -->
-    <a href="https://wa.me/919009378380?text=Hello%20Anytime%20Fresh%20Bake%20Bakery,%20I'd%20like%20to%20place%20an%20order!" class="whatsapp-float" target="_blank" aria-label="Order via WhatsApp">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
-
-    <!-- BACK TO TOP BUTTON -->
-    <button class="back-to-top" id="btnBackToTop" onclick="scrollToTop()" aria-label="Back To Top">
-        <i class="fa-solid fa-arrow-up"></i>
-    </button>
-
-    <!-- Script Resource Assets Package Dependencies -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-
-    <!-- Dedicated External JavaScript Controller Link -->
-    <script src="script.js"></script>
-</body>
-</html>
+                        <div class="col-md-6" data-aos="fade-up" data-aos
