@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anytime Fresh Bake Bakery & Fast Food | Bhopal</title>
+    <meta name="description" content="Delicious Cakes, Pastries, Cookies, Fast Food & Fresh Bakery Products Made With Love in Bhopal. Over 216+ Happy Customer Reviews.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=32&h=32&fit=crop&crop=faces">
+
+    <!-- Fonts: Playfair Display & Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* --- DESIGN SYSTEM BRANDING VARIABLES --- */
+        :root {
+            --cream: #FFF8F0;
+            --soft-beige: #F5E6D3;
+            --chocolate-brown: #4E342E;
+            --bakery-gold: #D4A017;
+            --warm-orange: #FF8C42;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Poppins', sans-serif;
+            --transition-smooth: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        /* --- GLOBAL BASICS --- */
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+        body {
+            font-family: var(--font-body);
+            background-color: var(--cream);
+            color: var(--chocolate-brown);
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+        }
+        p {
+            font-weight: 300;
+            line-height: 1.7;
+        }
+        .section-padding {
+            padding: 100px 0;
+        }
+        .btn-custom {
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: var(--transition-smooth);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+        .btn-gold {
+            background-color: var(--bakery-gold);
+            color: #fff;
+            border: 2px solid var(--bakery-gold);
+        }
+        .btn-gold:hover {
+            background-color: transparent;
+            color: var(--bakery-gold);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(212, 160, 23, 0.2);
+        }
+        .btn-outline-brown {
+            background-color: transparent;
+            color: var(--chocolate-brown);
+            border: 2px solid var(--chocolate-brown);
+        }
+        .btn-outline-brown:hover {
+            background-color: var(--chocolate-brown);
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(78, 52, 46, 0.2);
+        }
+
+        /* --- PRELOADER ANIMATION --- */
+        #preloader {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: var(--cream);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            transition: opacity 0.5s ease;
+        }
+        .loader-spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid var(--soft-beige);
+            border-top: 5px solid var(--bakery-gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* --- SCROLL PROGRESS INDICATOR --- */
+        #scroll-progress {
+            position: fixed;
+            top: 0; left: 0; height: 4px;
+            background: linear-gradient(90deg, var(--warm-orange), var(--bakery-gold));
+            z-index: 1050;
+            width: 0%;
+        }
+
+        /* --- STICKY GLASSMORPHISM NAVBAR --- */
+        .navbar {
+            background: rgba(255, 248, 240, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(78, 52, 46, 0.08);
+            transition: var(--transition-smooth);
+            padding: 15px 0;
+        }
+        .navbar.scrolled {
+            padding: 10px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-heading);
+            font-weight: 800;
+            color: var(--chocolate-brown) !important;
+        }
+        .nav-link {
+            font-family: var(--font-body);
+            color: var(--chocolate-brown) !important;
+            font-weight: 500;
+            margin: 0 10px;
+            position: relative;
+            transition: var(--transition-smooth);
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px; left: 0; width: 0; height: 2px;
+            background-color: var(--bakery-gold);
+            transition: var(--transition-smooth);
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero-section {
+            height: 100vh;
+            min-height: 650px;
+            background: linear-gradient(rgba(49, 32, 28, 0.65), rgba(49, 32, 28, 0.65)), 
+                        url('https://images.unsplash.com/photo-1517433456452-f9633a875f6f?auto=format&fit=crop&q=80&w=1920') no-repeat center center/cover;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            color: #fff;
+            position: relative;
+        }
+        .hero-title {
+            font-size: 4rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .hero-subtitle {
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin-bottom: 35px;
+            color: var(--soft-beige);
+        }
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem; }
+            .hero-section { background-attachment: scroll; }
+        }
+
+        /* --- SECTION HEADER HELPER --- */
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-header h2 {
+            font-size: 2.8rem;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        .section-header h2::after {
+            content: '✿';
+            display: block;
+            font-size: 1.2rem;
+            color: var(--bakery-gold);
+            margin-top: 5px;
+        }
+
+        /* --- ABOUT US SECTION --- */
+        .about-section {
+            background-color: var(--cream);
+        }
+        .about-img-wrapper {
+            position: relative;
+        }
+        .about-img-main {
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            width: 85%;
+        }
+        .about-img-floating {
+            position: absolute;
+            bottom: -30px; right: 0;
+            width: 50%;
+            border: 8px solid var(--cream);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        .badge-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .badge-item {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+            border-left: 4px solid var(--bakery-gold);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .badge-item i {
+            font-size: 1.8rem;
+            color: var(--warm-orange);
+        }
+        .badge-item span {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        /* --- PRODUCTS MENU SECTION --- */
+        .products-section {
+            background-color: var(--soft-beige);
+        }
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+        .filter-btn {
+            background-color: #fff;
+            border: 1px solid rgba(78, 52, 46, 0.15);
+            padding: 10px 24px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition-smooth);
+            color: var(--chocolate-brown);
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--chocolate-brown);
+            color: #fff;
+            border-color: var(--chocolate-brown);
+        }
+        .product-card {
+            background-color: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            transition: var(--transition-smooth);
+            height: 100%;
+            border: none;
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(78, 52, 46, 0.12);
+        }
+        .product-img-wrapper {
+            position: relative;
+            overflow: hidden;
+            height: 240px;
+        }
+        .product-img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
+        .product-card:hover .product-img {
+            transform: scale(1.1);
+        }
+        .product-tag {
+            position: absolute;
+            top: 15px; right: 15px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--chocolate-brown);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+        }
+        .product-info {
+            padding: 25px;
+            text-align: center;
+        }
+        .product-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        .product-desc {
+            font-size: 0.85rem;
+            color: #777;
+        }
+
+        /* --- WHY CHOOSE US SECTION --- */
+        .feature-card {
+            background-color: #fff;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+            transition: var(--transition-smooth);
+            border: 1px solid rgba(78, 52, 46, 0.03);
+            height: 100%;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(214, 160, 23, 0.1);
+            border-color: var(--soft-beige);
+        }
+        .feature-icon-box {
+            width: 70px; height: 70px;
+            background-color: var(--cream);
+            color: var(--warm-orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin: 0 auto 25px auto;
+            transition: var(--transition-smooth);
+        }
+        .feature-card:hover .feature-icon-box {
+            background-color: var(--warm-orange);
+            color: #fff;
+        }
+
+        /* --- REVIEWS COUNTER SECTION --- */
+        .reviews-section {
+            background: linear-gradient(rgba(78, 52, 46, 0.92), rgba(78, 52, 46, 0.92)), 
+                        url('https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=1920') no-repeat center center/cover;
+            background-attachment: fixed;
+            color: #fff;
+        }
+        .counter-box {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .counter-number {
+            font-size: 4.5rem;
+            font-weight: 800;
+            color: var(--bakery-gold);
+            font-family: var(--font-heading);
+            display: block;
+        }
+        .counter-label {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--soft-beige);
+        }
+        .testimonial-card {
+            background-color: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 35px;
+            height: 100%;
+            transition: var(--transition-smooth);
+        }
+        .testimonial-card:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .star-rating {
+            color: var(--bakery-gold);
+            margin-bottom: 15px;
+        }
+
+        /* --- MASONRY GALLERY SECTION --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-auto-rows: 240px;
+            grid-gap: 20px;
+        }
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+        .gallery-item.tall { grid-row: span 2; }
+        .gallery-item.wide { grid-column: span 2; }
+        .gallery-item img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
+        .gallery-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(78, 52, 46, 0.75);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+        }
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+        .gallery-item:hover img { transform: scale(1.08); }
+        .gallery-overlay i {
+            color: #fff;
+            font-size: 2rem;
+            transform: scale(0.5);
+            transition: var(--transition-smooth);
+        }
+        .gallery-item:hover .gallery-overlay i { transform: scale(1); }
+
+        @media(max-width:768px) {
+            .gallery-item.wide { grid-column: span 1; }
+        }
+
+        /* --- LIGHTBOX MODAL --- */
+        .lightbox-modal .modal-content {
+            background: transparent;
+            border: none;
+        }
+        .lightbox-modal .modal-body {
+            position: relative;
+            padding: 0;
+        }
+        .lightbox-img {
+            width: 100%; height: auto;
+            border-radius: 10px;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: -40px; right: 0;
+            color: #fff;
+            background: transparent;
+            border: none;
+            font-size: 2rem;
+        }
+
+        /* --- CONTACT SECTION --- */
+        .contact-info-box {
+            background-color: var(--soft-beige);
+            border-radius: 20px;
+            padding: 40px;
+            height: 100%;
+        }
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .contact-icon {
+            width: 50px; height: 50px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--chocolate-brown);
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+            flex-shrink: 0;
+        }
+        .contact-form-wrapper {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.02);
+            border: 1px solid rgba(78, 52, 46, 0.03);
+        }
+        .form-control {
+            border-radius: 10px;
+            padding: 12px 20px;
+            border: 1px solid rgba(78, 52, 46, 0.15);
+            background-color: var(--cream);
+        }
+        .form-control:focus {
+            box-shadow: 0 0 0 3px rgba(214, 160, 23, 0.2);
+            border-color: var(--bakery-gold);
+            background-color: #fff;
+        }
+        .map-container {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+            height: 250px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--chocolate-brown);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 80px 0 30px 0;
+            border-top: 5px solid var(--bakery-gold);
+        }
+        footer h4 {
+            color: #fff;
+            margin-bottom: 25px;
+            font-size: 1.4rem;
+        }
+        .footer-links list {
+            padding: 0; list-style: none;
+        }
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+        .footer-links a:hover {
+            color: var(--bakery-gold);
+            padding-left: 5px;
+        }
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .social-icons a {
+            width: 40px; height: 40px;
+            background-color: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-smooth);
+            text-decoration: none;
+        }
+        .social-icons a:hover {
+            background-color: var(--bakery-gold);
+            transform: translateY(-3px);
+        }
+
+        /* --- FLOATING CONTROLS --- */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px; right: 30px;
+            background-color: #25D366;
+            color: #fff;
+            width: 60px; height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+            z-index: 1000;
+            transition: var(--transition-smooth);
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1) rotate(10deg);
+            color: #fff;
+        }
+        .back-to-top {
+            position: fixed;
+            bottom: 35px; left: 30px;
+            background-color: var(--chocolate-brown);
+            color: #fff;
+            width: 50px; height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            z-index: 1000;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            opacity: 0;
+            visibility: hidden;
+            border: none;
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-to-top:hover {
+            background-color: var(--bakery-gold);
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PRELOADER -->
+    <div id="preloader">
+        <div class="loader-spinner"></div>
+        <h4 class="mt-3" style="color: var(--chocolate-brown); letter-spacing: 2px;">Baking Happiness...</h4>
+    </div>
+
+    <!-- SCROLL PROGRESS BAR -->
+    <div id="scroll-progress"></div>
+
+    <!-- GLASSMORPHISM STICKY NAVBAR -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <!-- Premium Custom Inline SVG Typography Logo Layout -->
+                <svg width="45" height="45" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" fill="#4E342E"/>
+                    <path d="M30 45C30 35 40 30 50 30C60 30 70 35 70 45C70 52 65 58 50 58C35 58 30 52 30 45Z" fill="#D4A017"/>
+                    <path d="M25 55C25 50 35 48 50 48C65 48 75 50 75 55C75 65 65 70 50 70C35 70 25 65 25 55Z" fill="#FF8C42"/>
+                    <circle cx="42" cy="40" r="3" fill="#FFF8F0"/>
+                    <circle cx="58" cy="38" r="3" fill="#FFF8F0"/>
+                    <circle cx="50" cy="44" r="3" fill="#FFF8F0"/>
+                </svg>
+                <div class="d-flex flex-column align-items-start line-height-1">
+                    <span style="font-size: 1.25rem; letter-spacing: 0.5px; line-height: 1.1;">ANYTIME FRESH BAKE</span>
+                    <span style="font-size: 0.75rem; font-family:var(--font-body); color: var(--bakery-gold); letter-spacing: 1px; font-weight: 600;">BAKERY & FAST FOOD</span>
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse id="navbarNav" id="navbarNav">
+                <ul class="navbar-nav ms-auto text-center">
+                    <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#products">Menu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#why-choose-us">Why Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#reviews">Reviews</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8" data-aos="fade-right" data-aos-duration="1200">
+                    <span class="badge mb-3 px-3 py-2" style="background-color: var(--warm-orange); font-family: var(--font-body); font-weight: 500; letter-spacing: 1px;">WELCOME TO PREMIUM FRESHNESS</span>
+                    <h1 class="hero-title">Freshly Baked Happiness Every Day</h1>
+                    <p class="hero-subtitle">Delicious Cakes, Pastries, Cookies, Fast Food & Fresh Bakery Products Made With Love.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="tel:9009378380" class="btn btn-custom btn-gold"><i class="fa-solid fa-phone me-2"></i>Call Us Now</a>
+                        <a href="#products" class="btn btn-custom btn-outline-brown style-secondary" style="color:#fff; border-color:#fff;"><i class="fa-solid fa-utensils me-2"></i>Explore Menu</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT US SECTION -->
+    <section id="about" class="section-padding about-section">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6" data-aos="fade-up" data-aos-duration="1000">
+                    <div class="about-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=800" alt="Fresh Bakery Products" class="about-img-main">
+                        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=500" alt="Baking Process" class="about-img-floating">
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                    <span style="color: var(--bakery-gold); font-weight:600; letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem;">Our Story</span>
+                    <h2 class="mt-2 mb-4" style="font-size: 2.5rem;">Baking With Passion, Serving With Love</h2>
+                    <p class="mb-4">At Anytime Fresh Bake Bakery & Fast Food, we bring freshly baked products and delicious fast food to our customers every day. Our passion for quality ingredients and exceptional taste has made us a favorite destination for bakery lovers in Bhopal.</p>
+                    
+                    <div class="badge-grid">
+                        <div class="badge-item">
+                            <i class="fa-solid fa-wheat-awn"></i>
+                            <span>Fresh Ingredients</span>
+                        </div>
+                        <div class="badge-item">
+                            <i class="fa-solid fa-user-tie"></i>
+                            <span>Expert Bakers</span>
+                        </div>
+                        <div class="badge-item">
+                            <i class="fa-solid fa-clock"></i>
+                            <span>Daily Fresh Production</span>
+                        </div>
+                        <div class="badge-item">
+                            <i class="fa-solid fa-award"></i>
+                            <span>Quality Assured</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTS SECTION -->
+    <section id="products" class="section-padding products-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up" data-aos-duration="1000">
+                <h2>Our Delicious Menu</h2>
+                <p>Indulge yourself in our wide array of premium baked goods and premium street fast food</p>
+            </div>
+
+            <!-- Dynamic Category Filter Buttons -->
+            <div class="filter-container" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+                <button class="filter-btn active" onclick="filterMenu('all')">All Delights</button>
+                <button class="filter-btn" onclick="filterMenu('bakery')">Cakes & Sweet treats</button>
+                <button class="filter-btn" onclick="filterMenu('fastfood')">Savory & Fast Food</button>
+            </div>
+
+            <!-- Menu Cards Item Row Grid -->
+            <div class="row g-4">
+                <!-- Product 1: Cakes -->
+                <div class="col-lg-3 col-md-6 menu-item bakery" data-aos="zoom-in" data-aos-duration="800">
+                    <div class="product-card">
+                        <div class="product-img-wrapper">
+                            <span class="product-tag">Best Seller</span>
+                            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=80&w=600" alt="Premium Cakes" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Designer Premium Cakes</h3>
+                            <p class="product-desc">Customized gourmet cakes crafted flawlessly for birthdays, anniversaries, and elite luxury celebrations.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2: Pastries -->
+                <div class="col-lg-3 col-md-6 menu-item bakery" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100">
+                    <div class="product-card">
+                        <div class="product-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&q=80&w=600" alt="Pastries" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Rich Cream Pastries</h3>
+                            <p class="product-desc">Mouth-watering, melt-in-your-mouth layered cream slices available in varied dense chocolate & fruit extracts.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3: Cookies -->
+                <div class="col-lg-3 col-md-6 menu-item bakery" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200">
+                    <div class="product-card">
+                        <div class="product-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&q=80&w=600" alt="Cookies" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Crunchy Handmade Cookies</h3>
+                            <p class="product-desc">Crisp, golden-baked cookies embedded generously with premium nuts, dynamic oats, and rich chocolate chunks.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4: Cupcakes -->
+                <div class="col-lg-3 col-md-6 menu-item bakery" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="300">
+                    <div class="product-card">
+                        <div class="product-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&q=80&w=600" alt="Cupcakes" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Artisanal Cupcakes</h3>
+                            <p class="product-desc">Fluffy miniature dynamic sweet muffins swirled with vibrant, rich velvety buttercream frostings.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 5: Pizza -->
+                <div class="col-lg-3 col-md-6 menu-item fastfood" data-aos="zoom-in" data-aos-duration="800">
+                    <div class="product-card">
+                        <div class="product-img-wrapper">
+                            <span class="product-tag">Hot & Fresh</span>
+                            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=600" alt="Pizza" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Cheesy Pan Pizzas</h3>
+                            <p class="product-desc">Freshly pulled artisan dough bases loaded with robust rich sauces, exotic farm veggies, and molten mozzarella.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 6: Burgers -->
+                <div class="col-lg-3 col-md-6 menu-item fastfood" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100">
+                    <div class="product-card">
+                        <div class="product-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&q=80&w=600" alt="Burgers" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Gourmet Grilled Burgers</h3>
+                            <p class="product-desc">Crisp seasoned vegetable patties layered structurally inside house-baked soft sesame brioche buns.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 7: Sandwiches -->
+                <div class="col-lg-3 col-md-6 menu-item fastfood" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200">
+                    <div class="product-card">
+                        <div class="product-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&q=80&w=600" alt="Sandwiches" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Club Grilled Sandwiches</h3>
+                            <p class="product-desc">Multi-layered crispy bread slices packed cleanly with organic greens, custom cheese, and hot house condiments.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 8: Fast Food Specials -->
+                <div class="col-lg-3 col-md-6 menu-item fastfood" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="300">
+                    <div class="product-card">
+                        <div class="product-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&q=80&w=600" alt="Fast Food Specials" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Fast Food Specials</h3>
+                            <p class="product-desc">Sizzling finger foods, fries, and regional favorites crafted instantly to satisfy your savory cravings.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY CHOOSE US SECTION -->
+    <section id="why-choose-us" class="section-padding" style="background-color: var(--cream);">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up" data-aos-duration="1000">
+                <h2>Why Choose Us</h2>
+                <p>We strictly maintain standard benchmarks that differentiate us from structural peers across town</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-4 col-sm-6" data-aos="fade-up" data-aos-duration="800">
+                    <div class="feature-card">
+                        <div class="feature-icon-box"><i class="fa-solid fa-cake-slice"></i></div>
+                        <h4>Freshly Baked Daily</h4>
+                        <p>We never sell stale items. Everything you consume is processed and completed on the exact calendar day.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                    <div class="feature-card">
+                        <div class="feature-icon-box"><i class="fa-solid fa-seedling"></i></div>
+                        <h4>Premium Ingredients</h4>
+                        <p>From fine organic flour to premium dairy fats, our ingredients are sourced directly from verified partners.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                    <div class="feature-card">
+                        <div class="feature-icon-box"><i class="fa-solid fa-pump-medical"></i></div>
+                        <h4>Hygienic Kitchen</h4>
+                        <p>Strict safety checks, regular sanitization workflows, and professional kitchen handling tools are deployed daily.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+                    <div class="feature-card">
+                        <div class="feature-icon-box"><i class="fa-solid fa-tags"></i></div>
+                        <h4>Affordable Prices</h4>
+                        <p>High gourmet standards offered strategically at competitive structural prices to fit budget constraints.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+                    <div class="feature-card">
+                        <div class="feature-icon-box"><i class="fa-solid fa-bolt"></i></div>
+                        <h4>Fast Service</h4>
+                        <p>Minimal order processing latency ensures you receive your savory fast foods piping hot without standard delays.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6" data-aos="fade-up" data-aos-duration="800" data-aos-delay="500">
+                    <div class="feature-card">
+                        <div class="feature-icon-box"><i class="fa-solid fa-face-smile"></i></div>
+                        <h4>Customer Satisfaction</h4>
+                        <p>Our goal is to build deep culinary relationships with every single guest who enters our establishment.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS & LIVE ANIMATED COUNTERS SECTION -->
+    <section id="reviews" class="section-padding reviews-section">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-4 text-center text-lg-start" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="counter-box">
+                        <span class="counter-number" id="reviewCount">0</span>
+                        <span class="counter-label">Happy Reviews Google Maps</span>
+                    </div>
+                    <div class="counter-box">
+                        <span class="counter-number">5.0</span>
+                        <div class="star-rating fs-3">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <span class="counter-label">Uncompromised Rating Profile</span>
+                    </div>
+                </div>
+
+                <div class="col-lg-8">
+                    <div class="row g-4">
+                        <div class="col-md-6" data-aos="fade-up" data-aos-duration="800">
+                            <div class="testimonial-card">
+                                <div class="star-rating">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="fst-italic">"Best bakery in the area. Fresh cakes and amazing taste! I regularly order custom birthday cakes from them and they deliver flawlessly every single time."</p>
+                                <h5 class="mt-3 text-white">- Aman Sharma</h5>
+                            </div>
+                        </div>
+                        <div class="col-md-6" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                            <div class="testimonial-card">
+                                <div class="star-rating">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="fst-italic">"Excellent service and delicious bakery products. The staff handles orders patiently and the premises are pristine. Pastries are remarkably soft."</p>
+                                <h5 class="mt-3 text-white">- Priya Patel</h5>
+                            </div>
+                        </div>
+                        <div class="col-md-12" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                            <div class="testimonial-card">
+                                <div class="star-rating">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="fst-italic">"Highly recommended for cakes and fast food. Their burgers and hot grilled paneer sandwiches have a distinct premium flavor profile. Absolutely unmatched value in Bhopal!"</p>
+                                <h5 class="mt-3 text-white">- Rohan Verma</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MASONRY GALLERY SECTION -->
+    <section id="gallery" class="section-padding text-center" style="background-color: var(--soft-beige);">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up" data-aos-duration="1000">
+                <h2>Our Premium Visual Gallery</h2>
+                <p>Catch a glimpse of our beautiful products right out of the baking oven</p>
+            </div>
+
+            <div class="gallery-grid" data-aos="fade-up" data-aos-duration="1200">
+                <div class="gallery-item tall" onclick="openLightbox('https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=80&w=800')">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=80&w=800" alt="Cake Showcase">
+                    <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&q=80&w=800')">
+                    <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&q=80&w=800" alt="Pastries Grid">
+                    <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                </div>
+                <div class="gallery-item wide" onclick="openLightbox('https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=1200')">
+                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=1200" alt="Pizza Display">
+                    <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&q=80&w=800')">
+                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&q=80&w=800" alt="Burger Platter">
+                    <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                </div>
+                <div class="gallery-item tall" onclick="openLightbox('https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=800')">
+                    <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=800" alt="Breads Fresh">
+                    <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&q=80&w=800')">
+                    <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&q=80&w=800" alt="Sweet Muffin">
+                    <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIGHTBOX MODAL CONTAINER ELEMENT -->
+    <div class="modal fade lightbox-modal" id="lightboxModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="lightbox-close" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+                    <img src="" id="lightboxTargetImg" class="lightbox-img" alt="Enlarged Showcase View">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="section-padding" style="background-color: var(--cream);">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up" data-aos-duration="1000">
+                <h2>Get In Touch</h2>
+                <p>Visit our flagship storefront or order clean freshly baked goods directly to your home</p>
+            </div>
+
+            <div class="row g-5">
+                <!-- Info Grid Box Column -->
+                <div class="col-lg-5" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="contact-info-box">
+                        <h3 class="mb-4 text-heading">Storefront Details</h3>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+                            <div>
+                                <h5>Our Address</h5>
+                                <p class="mb-0 text-muted">BM118, C Sector, Nehru Nagar, Bhopal, Madhya Pradesh 462003, India</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                            <div>
+                                <h5>Direct Mobile Line</h5>
+                                <p class="mb-0 text-muted">+91 90093 78380</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon"><i class="fa-solid fa-clock"></i></div>
+                            <div>
+                                <h5>Operating Timeline</h5>
+                                <p class="mb-0 text-muted">Open Daily: 09:00 AM - 10:30 PM</p>
+                            </div>
+                        </div>
+
+                        <div class="map-container mt-4">
+                            <!-- Real Embedded Google Map for Nehru Nagar, Bhopal Store -->
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3666.5746813292415!2d77.3871408!3d23.2221376!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397c4300305f838f%3A0xe54e12da36ea600f!2sNehru%20Nagar%2C%20Bhopal%2C%20Madhya%20Pradesh!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Column -->
+                <div class="col-lg-7" data-aos="fade-left" data-aos-duration="1000">
+                    <div class="contact-form-wrapper">
+                        <h3 class="mb-4 text-heading">Drop An Inquiry</h3>
+                        <form id="bakeryContactForm" onsubmit="handleFormSubmit(event)">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label font-weight-500">Your Full Name</label>
+                                    <input type="text" class="form-control" placeholder="John Doe" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label font-weight-500">Phone Number</label>
+                                    <input type="tel" class="form-control" placeholder="98765 XXXXX" required>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label font-weight-500">Select Order Type</label>
+                                    <select class="form-select form-control">
+                                        <option value="Cake Pre-order">Custom Birthday/Event Cake Pre-order</option>
+                                        <option value="Bulk Order Catering">Bulk Party Catering Inquiry</option>
+                                        <option value="General Feedback">General Feedback & Inquiries</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label font-weight-500">Elaborate Requirements</label>
+                                    <textarea class="form-control" rows="4" placeholder="Mention flavor preferences, quantities, or pickup details..." required></textarea>
+                                </div>
+                                <div class="col-12 mt-4">
+                                    <button type="submit" class="btn btn-custom btn-gold w-100 py-3"><i class="fa-solid fa-paper-plane me-2"></i>Send Secure Message</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER SECTION LAYOUT -->
+    <footer>
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <h4 style="font-family: var(--font-heading); font-weight:700;">Anytime Fresh Bake</h4>
+                    <p class="small text-white-50">Providing supreme indulgence and elite street culinary treats with structural excellence. Visually stunning, hygienically superior baking practices.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 footer-links">
+                    <h4>Quick Links</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Home Base</a></li>
+                        <li><a href="#about">Our Story</a></li>
+                        <li><a href="#products">Menu Options</a></li>
+                        <li><a href="#why-choose-us">Quality Metrics</a></li>
+                        <li><a href="#contact">Reach Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-5 col-md-12">
+                    <h4>Reach Our Storefront Directly</h4>
+                    <p class="small mb-2"><i class="fa-solid fa-location-dot me-2 text-warning"></i> BM118, C Sector, Nehru Nagar, Bhopal, MP, 462003, India</p>
+                    <p class="small mb-2"><i class="fa-solid fa-phone me-2 text-warning"></i> +91 90093 78380</p>
+                    <p class="small"><i class="fa-solid fa-envelope me-2 text-warning"></i> info@anytimefreshbake.com</p>
+                </div>
+            </div>
+            <hr class="my-4" style="background-color: rgba(255,255,255,0.15);">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="small mb-0">&copy; 2026 Anytime Fresh Bake Bakery & Fast Food. All Rights Reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end mt-2 mt-md-0">
+                    <span class="small text-white-50">Designed with Pride in Bhopal</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE FLOATING CONTROLS SMART HOOKS -->
+    <a href="https://wa.me/919009378380?text=Hello%20Anytime%20Fresh%20Bake%20Bakery,%20I'd%20like%20to%20place%20an%20order!" class="whatsapp-float" target="_blank" aria-label="Order via WhatsApp Link">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <button class="back-to-top" id="btnBackToTop" onclick="scrollToTop()" aria-label="Back To Top Arrow Link">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- JS DEPENDENCY BUILDERS SCRIPTS PACKAGE LIST -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+    <script>
+        /* --- APPLICATION EXECUTION MODULES --- */
+        
+        // Initialize AOS animations Framework
+        document.addEventListener("DOMContentLoaded", function() {
+            AOS.init({
+                once: true,
+                mirror: false
+            });
+            
+            // Hide Preloader Element Post UI Load
+            const preloader = document.getElementById('preloader');
+            setTimeout(() => {
+                preloader.style.opacity = '0';
+                setTimeout(() => { preloader.style.display = 'none'; }, 500);
+                // Trigger Counter Increments on Complete view Initialization
+                animateCounter("reviewCount", 0, 216, 2000);
+            }, 800);
+        });
+
+        // Sticky Navbar Transformation Framework Hook
+        window.onscroll = function() {
+            handleWindowScrollPhysics();
+        };
+
+        function handleWindowScrollPhysics() {
+            const navbar = document.querySelector('.navbar');
+            const backToTop = document.getElementById('btnBackToTop');
+            const scrollProgress = document.getElementById('scroll-progress');
+            
+            // Calculate progress depth percent metric values
+            const totalHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const progressPercent = (window.pageYOffset / totalHeight) * 100;
+            scrollProgress.style.width = progressPercent + "%";
+
+            // Navbar adjustments styling mechanics
+            if (window.pageYOffset > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            // Back to top floating toggles display checks
+            if (window.pageYOffset > 400) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Menu Tab Category Sorting Module Engine
+        function filterMenu(category) {
+            const items = document.querySelectorAll('.menu-item');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            // Update Active Status Class references dynamically
+            buttons.forEach(btn => {
+                if(btn.setAttribute('onclick', `filterMenu('${category}')`)) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            
+            event.target.classList.add('active');
+
+            items.forEach(item => {
+                if (category === 'all') {
+                    item.style.display = 'block';
+                    setTimeout(() => { item.style.opacity = '1'; item.style.transform = 'scale(1)'; }, 50);
+                } else {
+                    if (item.classList.contains(category)) {
+                        item.style.display = 'block';
+                        setTimeout(() => { item.style.opacity = '1'; item.style.transform = 'scale(1)'; }, 50);
+                    } else {
+                        item.style.opacity = '0';
+                        item.style.transform = 'scale(0.8)';
+                        setTimeout(() => { item.style.display = 'none'; }, 300);
+                    }
+                }
+            });
+        }
+
+        // Live Numerical Counter Engine
+        function animateCounter(id, start, end, duration) {
+            const obj = document.getElementById(id);
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start) + "+";
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Custom Modal Image Lightbox Core Actions Logic
+        function openLightbox(imgUrl) {
+            const targetImg = document.getElementById('lightboxTargetImg');
+            targetImg.src = imgUrl;
+            const myModal = new bootstrap.Modal(document.getElementById('lightboxModal'));
+            myModal.show();
+        }
+
+        // Simple Form Submission Event Simulation Catch handler
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            alert("Thank you for your submission! Our backend representative will reach out shortly regarding your custom bakery inquiry.");
+            document.getElementById('bakeryContactForm').reset();
+        }
+    </script>
+</body>
+</html>
