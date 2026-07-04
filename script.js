@@ -1,24 +1,28 @@
-// DEFAULT PRE-LOADED BAKERY PRODUCTS
+/* --- APPLICATION EXECUTION MODULES --- */
+
+// PRE-LOADED STARTER MENU GOODS
 const defaultDishes = [
-    { id: 1, title: "Premium Birthday Cakes", category: "bakery", image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=80&w=600", description: "Custom gourmet cakes crafted for birthdays and elite celebrations." },
-    { id: 2, title: "Rich Cream Pastries", category: "bakery", image: "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&q=80&w=600", description: "Mouth-watering cream slices available in dense chocolate variants." },
-    { id: 3, title: "Cheesy Pan Pizzas", category: "fastfood", image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=600", description: "Freshly pulled dough bases loaded with robust sauces and mozzarella." },
-    { id: 4, title: "Gourmet Grilled Burgers", category: "fastfood", image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&q=80&w=600", description: "Crisp seasoned vegetable patties layered inside soft brioche buns." }
+    { id: 1, title: "Premium Designer Cakes", category: "bakery", image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=80&w=600", description: "Custom gourmet cakes crafted flawlessly for birthdays and celebrations." },
+    { id: 2, title: "Rich Cream Pastries", category: "bakery", image: "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&q=80&w=600", description: "Mouth-watering cream slices available in delicious dark chocolate profiles." },
+    { id: 3, title: "Cheesy Pan Pizzas", category: "fastfood", image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=600", description: "Artisan pulled bases loaded with robust cheese layers and fresh toppings." },
+    { id: 4, title: "Gourmet Grilled Burgers", category: "fastfood", image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&q=80&w=600", description: "Crisp seasoned veggie patties nested inside fresh house brioche sesame buns." }
 ];
 
-// INITIALIZATION PIPELINE
+// INITIALIZATION SCHEDULER Pipeline
 document.addEventListener("DOMContentLoaded", function() {
     AOS.init({ once: true, mirror: false });
     
-    // Clear Preloader Screen
+    // Clear Web Screen Loader
     const preloader = document.getElementById('preloader');
     setTimeout(() => {
-        preloader.style.opacity = '0';
-        setTimeout(() => { preloader.style.display = 'none'; }, 500);
+        if(preloader) {
+            preloader.style.opacity = '0';
+            setTimeout(() => { preloader.style.display = 'none'; }, 500);
+        }
         animateCounter("reviewCount", 0, 216, 2000);
     }, 800);
 
-    // Initialize Local Storage Menu
+    // Bootstrap local directory storage instances
     if (!localStorage.getItem('bakeryMenu')) {
         localStorage.setItem('bakeryMenu', JSON.stringify(defaultDishes));
     }
@@ -26,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function() {
     renderMenuCardUI('all');
 });
 
-// CORE MENU DISPLAY RENDERING ENGINE
+// SYSTEM DISPLAY GRID BUILDER
 function renderMenuCardUI(filterCategory = 'all') {
     const container = document.getElementById('dynamic-menu-container');
     if (!container) return;
@@ -55,22 +59,34 @@ function renderMenuCardUI(filterCategory = 'all') {
     AOS.refresh();
 }
 
-// SECURE ADMIN POPUP PASSWORD TRIGGER
+// SAFE WINDOW TARGET CATEGORY FILTER ENGINE
+function filterMenu(category) {
+    const buttons = document.querySelectorAll('.filter-btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    
+    // Safety check ensuring event initialization context is verified before processing classes
+    if (typeof event !== 'undefined' && event.target) {
+        event.target.classList.add('active');
+    }
+    renderMenuCardUI(category);
+}
+
+// SECURED LOGIN WORKSPACE GATEWAY HOOK
 function triggerAdminLogin() {
     const accessKey = prompt("🔒 Enter Secure Admin Password Workspace Access:");
     
-    // Master secret entry password code
+    // Dashboard Secret Entry Token Profile Matcher
     if (accessKey === "Bhopal78380") {
-        alert("🔓 Access Granted. Opening Bakery Admin Dashboard Panel...");
+        alert("🔓 Access Verified. Opening Internal Management Suite...");
         populateAdminTable();
         const controlPanel = new bootstrap.Modal(document.getElementById('adminControlPanelModal'));
         controlPanel.show();
     } else if (accessKey !== null) {
-        alert("❌ Invalid Admin Password. Entry Request Terminated.");
+        alert("❌ Credentials Matching Fail. Gateway Access Terminated.");
     }
 }
 
-// DASHBOARD: ADD NEW DISH FUNCTION
+// MANAGEMENT SUITE ROUTINES: INSERT
 function handleAdminAddDish(event) {
     event.preventDefault();
     
@@ -95,12 +111,12 @@ function handleAdminAddDish(event) {
     document.getElementById('adminAddDishForm').reset();
     populateAdminTable();
     renderMenuCardUI('all');
-    alert("✨ Success! New dish appended live onto the public storefront.");
+    alert("✨ Success! Appended fresh menu nodes onto the live UI display shelf.");
 }
 
-// DASHBOARD: DELETE DISH FUNCTION
+// MANAGEMENT SUITE ROUTINES: DESTRUCTION
 function deleteMenuNode(id) {
-    if (confirm("Are you sure you want to delete this menu product completely?")) {
+    if (confirm("Permanently wipe this entry element node from the local memory directory?")) {
         let currentMenu = JSON.parse(localStorage.getItem('bakeryMenu')) || [];
         currentMenu = currentMenu.filter(item => item.id !== id);
         localStorage.setItem('bakeryMenu', JSON.stringify(currentMenu));
@@ -109,7 +125,6 @@ function deleteMenuNode(id) {
     }
 }
 
-// POPULATE DASHBOARD GRID TABLE VIEW
 function populateAdminTable() {
     const tbody = document.getElementById('adminDishTableBody');
     if (!tbody) return;
@@ -120,7 +135,7 @@ function populateAdminTable() {
     currentMenu.forEach(item => {
         const row = `
             <tr>
-                <td class="fw-bold text-dark">${item.title}</td>
+                <td class="fw-bold text-dark text-start">${item.title}</td>
                 <td><span class="badge bg-secondary text-uppercase">${item.category}</span></td>
                 <td>
                     <button class="btn btn-sm btn-danger px-2 py-1" onclick="deleteMenuNode(${item.id})">
@@ -133,7 +148,7 @@ function populateAdminTable() {
     });
 }
 
-// SITE NAVIGATION SCROLLING MECHANICS
+// SCROLL AND GENERAL LAYOUT PHYSICS MOTORS
 window.onscroll = function() {
     const navbar = document.querySelector('.navbar');
     const backToTop = document.getElementById('btnBackToTop');
@@ -150,14 +165,7 @@ window.onscroll = function() {
     else backToTop.classList.remove('visible');
 };
 
-function filterMenu(category) {
-    const buttons = document.querySelectorAll('.filter-btn');
-    buttons.forEach(btn => btn.classList.remove('active'));
-    if (event && event.target) event.target.classList.add('active');
-    renderMenuCardUI(category);
-}
-
 function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 function openLightbox(url) { document.getElementById('lightboxTargetImg').src = url; new bootstrap.Modal(document.getElementById('lightboxModal')).show(); }
-function handleFormSubmit(e) { e.preventDefault(); alert("Inquiry sent successfully!"); document.getElementById('bakeryContactForm').reset(); }
+function handleFormSubmit(e) { e.preventDefault(); alert("Inquiry delivered smoothly!"); document.getElementById('bakeryContactForm').reset(); }
 function animateCounter(id,s,e,d){const o=document.getElementById(id);if(!o)return;let t=null;const step=(cp)=>{if(!t)t=cp;const p=Math.min((cp-t)/d,1);o.innerHTML=Math.floor(p*(e-s)+s)+"+";if(p<1)window.requestAnimationFrame(step);};window.requestAnimationFrame(step);}
